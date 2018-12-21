@@ -37,3 +37,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+/front/node_modules/
+/front/dist/
+/server/node_modules/
+/server/dist/

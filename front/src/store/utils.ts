@@ -1,5 +1,5 @@
 import {ActionReducer} from '@ngrx/store/src/models';
-import {Action, createSelector, Selector} from '@ngrx/store';
+import {Action} from '@ngrx/store';
 
 interface IActionReducerMap<T> {
   [action: string]: ActionReducer<T, Action>;
