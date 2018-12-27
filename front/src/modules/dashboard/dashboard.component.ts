@@ -16,10 +16,9 @@ export class DashboardComponent implements OnInit{
 
   ngOnInit() {
     this.userName =  this.store.pipe(
-        distinctUntilChanged(),
-        select(userStateSelector),
-        map(({userName}) => userName)
-      );
-    }
-  };
+      distinctUntilChanged(),
+      select(userStateSelector),
+      map(({userName}) => userName)
+    );
+  }
 }

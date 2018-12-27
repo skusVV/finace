@@ -42,3 +42,4 @@ Thumbs.db
 /front/dist/
 /server/node_modules/
 /server/dist/
+/server/config

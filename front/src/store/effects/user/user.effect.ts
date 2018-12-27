@@ -2,7 +2,15 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
 import {Observable} from 'rxjs';
-import {USER_LOGIN, LoginUser, LoginUserFail, LoginUserSuccess, USER_SET, USER_REGISTER} from '../../reducers/user/user.actions';
+import {
+  USER_LOGIN,
+  LoginUser,
+  LoginUserFail,
+  LoginUserSuccess,
+  USER_SET,
+  USER_REGISTER,
+  RegisterUser,
+} from '../../reducers/user/user.actions';
 import {map, catchError, switchMap, tap, filter} from 'rxjs/operators';
 import {of} from 'rxjs';
 import {RedirectTo} from '../../reducers/router/router.actions';
@@ -21,28 +29,25 @@ export class UserEffect {
       ofType<LoginUser>(USER_LOGIN),
       switchMap(({payload: {userName, password}}) =>
         http.post<any>(`/api/v1/user/auth`, {userName, password}).pipe(
-          map(({body: {userName, auth}}) => new LoginUserSuccess(userName, auth)),
-          //TODO change LoginUserSuccess to LoginUserFail
+          map(({userName, mail, token}) => new LoginUserSuccess(userName, mail, token)),
           catchError(() => of(new LoginUserFail( false))),
         ),
       ),
     );
 
     this.registerUserStream = actionsStream.pipe(
-      ofType<LoginUser>(USER_REGISTER),
-      switchMap(({payload: {userName, password, mail, promocode}}) =>
-        http.post<any>(`/api/v1/user/register`, {userName, password, mail, promocode}).pipe(
-          map(data => console.log(data)),
-          //TODO change LoginUserSuccess to LoginUserFail
-          // catchError(() => of(new RegisterUserFail( false))),
+      ofType<RegisterUser>(USER_REGISTER),
+      switchMap(({payload: {userName, password, mail, promoCode}}) =>
+        http.post<any>(`/api/v1/user/register`, {userName, password, mail, promoCode}).pipe(
+          tap(() => {
+            this.store.dispatch(new RedirectTo(['/login']));
+          }),
         ),
       ),
     );
 
     this.loginUserSuccessStream = actionsStream.pipe(
       ofType<LoginUserSuccess>(USER_SET),
-      // if LoginUserSuccess always true then we do not need filter here anymore
-      filter(({payload})=> !!payload.auth),
       tap(() => {
         this.store.dispatch(new RedirectTo(['/dashboard']));
       }),
@@ -50,8 +55,6 @@ export class UserEffect {
 
     this.loginUserFailStream = actionsStream.pipe(
       ofType<LoginUserFail>(USER_SET),
-      // if LoginUserSuccess always true then we do not need filter here anymore
-      filter(({payload})=> !payload.auth),
       tap(() => {
         console.log('errror')
       }),

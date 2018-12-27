@@ -25,10 +25,10 @@ export class RegisterUser implements Action {
 
 export class LoginUserSuccess implements Action {
   readonly type = USER_SET;
-  readonly payload: {userName: string, auth: boolean};
+  readonly payload: {userName: string, mail: string, token: string, auth: boolean};
 
-  constructor(userName, auth) {
-    this.payload = {userName, auth};
+  constructor(userName, mail, token) {
+    this.payload = {userName, mail, token, auth: true};
   }
 }
 
