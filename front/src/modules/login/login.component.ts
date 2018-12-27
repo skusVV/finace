@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import {Component} from '@angular/core';
+import {FormGroup, FormControl} from '@angular/forms';
 import {Store} from '@ngrx/store';
 import {IState} from '../../store/reducers/index'
 import {LoginUser} from '../../store/reducers/user/user.actions';
+import {RedirectTo} from '../../store/reducers/router/router.actions';
+
+const ROUTE_REGISTER = 'register';
 
 @Component({
   selector: 'app-login',
@@ -17,12 +20,15 @@ export class LoginComponent {
 
   constructor(private store: Store<IState>){}
 
-  get formData() {
-    return this.loginForm.getRawValue();
+  login() {
+    this.store.dispatch(new LoginUser(this.formData));
   }
 
+  register() {
+    this.store.dispatch(new RedirectTo([ROUTE_REGISTER]));
+  }
 
-  login() {
-    this.store.dispatch(new LoginUser(this.formData))
+  private get formData() {
+    return this.loginForm.getRawValue();
   }
 }

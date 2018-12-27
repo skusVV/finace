@@ -1,0 +1,20 @@
+<section class="register">
+  <div class="register_form" [formGroup]="registerForm">
+    <mat-form-field class="register_form_item">
+      <input matInput type="text" placeholder="User Name"  formControlName="userName">
+    </mat-form-field>
+    <mat-form-field class="register_form_item">
+      <input matInput type="text" placeholder="Email"  formControlName="mail">
+    </mat-form-field>
+    <mat-form-field class="register_form_item">
+      <input matInput type="text" placeholder="PromoCode"  formControlName="promoCode">
+    </mat-form-field>
+    <mat-form-field class="register_form_item">
+      <input matInput type="password" placeholder="password" formControlName="password">
+    </mat-form-field>
+    <div class="register_form_buttons">
+      <button mat-flat-button color="primary" (click)="register()">Register</button>
+    </div>
+  </div>
+</section>
+

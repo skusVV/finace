@@ -18,8 +18,8 @@ export class AuthGuard implements CanActivate {
       map(({auth}) => auth
         ? true
         // TODO only for development
-        : true)
-       // : this.redirect())
+        // : true)
+       : this.redirect())
     )
   }
 

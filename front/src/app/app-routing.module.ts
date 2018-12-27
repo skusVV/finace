@@ -17,6 +17,14 @@ const routes: Routes = [
     loadChildren: '../modules/login/login.module#LoginModule',
   },
   {
+    path: 'register/',
+    redirectTo: 'register',
+  },
+  {
+    path: 'register',
+    loadChildren: '../modules/register/register.module#RegisterModule',
+  },
+  {
     path: '**',
     redirectTo: '',
   },
