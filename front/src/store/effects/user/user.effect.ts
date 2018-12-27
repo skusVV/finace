@@ -7,11 +7,11 @@ import {
   LoginUser,
   LoginUserFail,
   LoginUserSuccess,
-  USER_SET,
+  USER_LOGIN_SUCCESS,
   USER_REGISTER,
   RegisterUser,
 } from '../../reducers/user/user.actions';
-import {map, catchError, switchMap, tap, filter} from 'rxjs/operators';
+import {map, catchError, switchMap, tap} from 'rxjs/operators';
 import {of} from 'rxjs';
 import {RedirectTo} from '../../reducers/router/router.actions';
 import {Store} from '@ngrx/store';
@@ -22,7 +22,6 @@ export class UserEffect {
   @Effect() loginUserStream: Observable<LoginUserSuccess | LoginUserFail>;
   @Effect({dispatch: false}) registerUserStream;
   @Effect({dispatch: false}) loginUserSuccessStream;
-  @Effect({dispatch: false}) loginUserFailStream;
 
   constructor(private http: HttpClient, private actionsStream: Actions, private store: Store<IState>) {
     this.loginUserStream = actionsStream.pipe(
@@ -30,7 +29,7 @@ export class UserEffect {
       switchMap(({payload: {userName, password}}) =>
         http.post<any>(`/api/v1/user/auth`, {userName, password}).pipe(
           map(({userName, mail, token}) => new LoginUserSuccess(userName, mail, token)),
-          catchError(() => of(new LoginUserFail( false))),
+          catchError(({error}) => of(new LoginUserFail( error.text))),
         ),
       ),
     );
@@ -47,16 +46,9 @@ export class UserEffect {
     );
 
     this.loginUserSuccessStream = actionsStream.pipe(
-      ofType<LoginUserSuccess>(USER_SET),
+      ofType<LoginUserSuccess>(USER_LOGIN_SUCCESS),
       tap(() => {
         this.store.dispatch(new RedirectTo(['/dashboard']));
-      }),
-    );
-
-    this.loginUserFailStream = actionsStream.pipe(
-      ofType<LoginUserFail>(USER_SET),
-      tap(() => {
-        console.log('errror')
       }),
     );
   }

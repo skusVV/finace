@@ -13,10 +13,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthGuard} from '../services/guards/auth.guard';
 import {RouterEffects} from '../store/effects/router/router.effect';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports:[
     CommonModule,
@@ -27,6 +28,7 @@ import {RouterEffects} from '../store/effects/router/router.effect';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     BrowserAnimationsModule,
     AppRoutingModule,
+    MatSnackBarModule
   ],
   providers: [
     reducerProvider,

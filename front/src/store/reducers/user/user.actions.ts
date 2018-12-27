@@ -1,6 +1,8 @@
 import {Action} from '@ngrx/store';
 
 export const USER_LOGIN = '[USER] Login';
+export const USER_LOGIN_SUCCESS = '[USER] Login Success';
+export const USER_LOGIN_FAIL = '[USER] Login Fail';
 export const USER_REGISTER = '[USER] Register';
 export const USER_SET = '[USER] SET';
 export const USER_CLEAR = '[USER] Clear';
@@ -24,7 +26,7 @@ export class RegisterUser implements Action {
 }
 
 export class LoginUserSuccess implements Action {
-  readonly type = USER_SET;
+  readonly type = USER_LOGIN_SUCCESS;
   readonly payload: {userName: string, mail: string, token: string, auth: boolean};
 
   constructor(userName, mail, token) {
@@ -33,10 +35,10 @@ export class LoginUserSuccess implements Action {
 }
 
 export class LoginUserFail implements Action {
-  readonly type = USER_SET;
-  readonly payload: {auth: boolean};
+  readonly type = USER_LOGIN_FAIL;
+  readonly payload: {error: string};
 
-  constructor(auth) {
-    this.payload = {auth};
+  constructor(error) {
+    this.payload = {error};
   }
 }
