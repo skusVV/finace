@@ -1,0 +1,13 @@
+<section class="login">
+  <div class="login_form" [formGroup]="loginForm">
+    <mat-form-field class="login_form_item">
+      <input matInput type="text" placeholder="login"  formControlName="userName">
+    </mat-form-field>
+    <mat-form-field class="login_form_item">
+      <input matInput type="password" placeholder="password" formControlName="password">
+    </mat-form-field>
+    <div class="login_form_button">
+      <button mat-flat-button color="primary" (click)="login()">Login</button>
+    </div>
+  </div>
+</section>

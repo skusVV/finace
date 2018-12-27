@@ -5,10 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { AppEffects } from '../store/effects/app/app.effects';
+import { UserEffect } from '../store/effects/user/user.effect';
 import { metaReducers, reducerToken, reducerProvider } from '../store/reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {HttpClientModule} from '@angular/common/http';
+import {AuthGuard} from '../services/guards/auth.guard';
+import {RouterEffects} from '../store/effects/router/router.effect';
 
 @NgModule({
   declarations: [
@@ -17,13 +21,16 @@ import { environment } from '../environments/environment';
   imports:[
     CommonModule,
     NgtUniversalModule,
-    AppRoutingModule,
+    HttpClientModule,
     StoreModule.forRoot(reducerToken, { metaReducers }),
-    EffectsModule.forRoot([AppEffects]),
-    !environment.production ? StoreDevtoolsModule.instrument() : []
+    EffectsModule.forRoot([UserEffect, RouterEffects]),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    BrowserAnimationsModule,
+    AppRoutingModule,
   ],
   providers: [
-    reducerProvider
+    reducerProvider,
+    AuthGuard
   ],
 })
 export class AppModule { }
