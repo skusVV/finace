@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {FormBuilder, FormGroup, Validators, FormArray} from '@angular/forms';
 
 @Component({
@@ -7,6 +7,7 @@ import {FormBuilder, FormGroup, Validators, FormArray} from '@angular/forms';
   styleUrls: ['./initial-form.component.less']
 })
 export class InitialFormComponent implements OnInit {
+  @Output() initialData = new EventEmitter();
   firstStep: FormGroup;
   secondStep: FormGroup;
 
@@ -41,5 +42,9 @@ export class InitialFormComponent implements OnInit {
   }
 
   complete() {
+    this.initialData.next({
+      payment: this.firstStep.getRawValue().payment,
+      categories: this.secondStep.getRawValue().categories
+    });
   }
 }

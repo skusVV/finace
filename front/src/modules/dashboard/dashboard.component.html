@@ -4,5 +4,5 @@
 
 </header>
 <div *ngIf="!(months | async).length">
-  <app-initial-form></app-initial-form>
+  <app-initial-form (initialData)="saveInitialData($event)"></app-initial-form>
 </div>

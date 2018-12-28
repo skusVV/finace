@@ -37,4 +37,11 @@ export class DashboardComponent implements OnInit{
       map(({months}) => months)
     );
   }
+
+  saveInitialData(data: any) {
+    // SHOULD to set date (both for category and amount -- meybe should do it on backend) here,
+    // it need to understand where we create category
+    // then it will be useful for history.
+    console.log(data);
+  }
 }
