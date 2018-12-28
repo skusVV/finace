@@ -1,5 +1,5 @@
-import {createReducer} from '../../utils';
-import {USER_LOGIN_FAIL, USER_LOGIN_SUCCESS} from './user.actions'
+import {createReducer} from '../utils';
+import {USER_LOGIN_FAIL, USER_LOGIN_SUCCESS} from '../actions/user.actions'
 
 export interface IUserState {
   userName: string;

@@ -2,10 +2,10 @@ import {Injectable} from '@angular/core';
 import {CanActivate} from '@angular/router';
 import {Observable} from 'rxjs';
 import {select, Store} from '@ngrx/store';
-import {filter, first, map} from 'rxjs/operators';
+import {first, map} from 'rxjs/operators';
 import {IState} from '../../store/reducers/index'
 import {userStateSelector} from '../../store/reducers';
-import {RedirectTo} from '../../store/reducers/router/router.actions';
+import {RedirectTo} from '../../store/actions/router.actions';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -17,9 +17,7 @@ export class AuthGuard implements CanActivate {
       first(),
       map(({auth}) => auth
         ? true
-        // TODO only for development
-        // : true)
-       : this.redirect())
+        : this.redirect())
     )
   }
 

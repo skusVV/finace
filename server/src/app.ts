@@ -12,8 +12,6 @@ class App {
 
     constructor() {
         this.app = express();
-        this.app.use(new Jwt().jwt());
-        this.app.use(new ErrorHandler().errorHandler);
         this.app.all('/*', function(req, res, next) {
             res.header("Access-Control-Allow-Origin", "http://localhost:4200");
             res.header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
@@ -29,6 +27,8 @@ class App {
     private config(): void {
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: false }));
+        this.app.use(new Jwt().jwt());
+        this.app.use(new ErrorHandler().errorHandler);
     }
 
     private mongoSetup(): void {

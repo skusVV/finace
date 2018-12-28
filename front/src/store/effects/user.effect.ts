@@ -10,12 +10,12 @@ import {
   USER_LOGIN_SUCCESS,
   USER_REGISTER,
   RegisterUser,
-} from '../../reducers/user/user.actions';
+} from '../actions/user.actions';
 import {map, catchError, switchMap, tap} from 'rxjs/operators';
 import {of} from 'rxjs';
-import {RedirectTo} from '../../reducers/router/router.actions';
+import {RedirectTo} from '../actions/router.actions';
 import {Store} from '@ngrx/store';
-import {IState} from '../../reducers';
+import {IState} from '../reducers/index';
 
 @Injectable()
 export class UserEffect {

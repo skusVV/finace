@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {MatSnackBar} from '@angular/material';
 import {IState, userStateSelector} from '../store/reducers';
 import {select, Store} from '@ngrx/store';
-import {distinctUntilChanged, filter, map} from 'rxjs/operators';
+import {distinctUntilChanged, filter, map, tap, takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
 import {DEFAULT_ERROR, DEFAULT_SNACK_BAR_DURATION} from '../constants';
 
 
@@ -11,18 +12,25 @@ import {DEFAULT_ERROR, DEFAULT_SNACK_BAR_DURATION} from '../constants';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.less']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
+  private destroyStream = new Subject<void>();
+
   constructor(private snackBar: MatSnackBar, private store: Store<IState>) {}
 
   ngOnInit() {
     this.store.pipe(
+      takeUntil(this.destroyStream),
       distinctUntilChanged(),
       select(userStateSelector),
       map(({error}) => error),
       filter(error => error && !!error.length),
-    ).subscribe(error=> {
-      this.openSnackBar(error);
-    });
+      tap(error => this.openSnackBar(error))
+    ).subscribe();
+  }
+
+  ngOnDestroy() {
+    this.destroyStream.next();
+    this.destroyStream.complete();
   }
 
   openSnackBar(message = DEFAULT_ERROR) {

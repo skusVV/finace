@@ -2,8 +2,8 @@ import {Component} from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
 import {Store} from '@ngrx/store';
 import {IState} from '../../store/reducers/index'
-import {LoginUser} from '../../store/reducers/user/user.actions';
-import {RedirectTo} from '../../store/reducers/router/router.actions';
+import {LoginUser} from '../../store/actions/user.actions';
+import {RedirectTo} from '../../store/actions/router.actions';
 
 const ROUTE_REGISTER = 'register';
 

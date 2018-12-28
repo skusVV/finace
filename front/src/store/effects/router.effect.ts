@@ -1,14 +1,10 @@
-// import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
 import {Router} from '@angular/router';
 import {Store} from '@ngrx/store';
-import {IState} from '../../reducers/index';
-// import {Observable} from 'rxjs';
-// import {LOGIN_USER, LoginUser, LoginUserSuccess} from '../../reducers/user/user.actions';
-import {map, catchError, switchMap, tap} from 'rxjs/operators';
-// import { of } from 'rxjs';
-import {ROUTER_REDIRECT_TO, RedirectTo} from '../../reducers/router/router.actions'
+import {IState} from '../reducers/index';
+import {tap} from 'rxjs/operators';
+import {ROUTER_REDIRECT_TO, RedirectTo} from '../actions/router.actions'
 
 @Injectable()
 export class RouterEffects {

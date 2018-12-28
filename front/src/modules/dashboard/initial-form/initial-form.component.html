@@ -1,0 +1,50 @@
+<section class="initial-form">
+  <mat-horizontal-stepper [linear]="true" #stepper>
+    <mat-step [stepControl]="firstStep" class="initial-form_step">
+      <form [formGroup]="firstStep">
+        <ng-template matStepLabel>Initial Payment (UAH)</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="initial payment" formControlName="payment" type="number" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondStep">
+      <form [formGroup]="secondStep">
+        <ng-template matStepLabel>Add Categories</ng-template>
+        <div formArrayName="categories">
+          <div *ngFor="let category of secondStep.get('categories').controls; let i = index">
+            <div [formGroupName]="i">
+              <mat-form-field>
+                <input matInput placeholder="name" formControlName="name" required>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="percent" formControlName="percent" type="number" required>
+              </mat-form-field>
+              <button mat-button (click)="deleteCategory(i)">Delete Category</button>
+            </div>
+          </div>
+          <button mat-button (click)="addNewCompany()">Add Category</button>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step class="initial-form_step">
+      <ng-template matStepLabel>Done</ng-template>
+      Great, You are now done.
+      <div>Your initial amount is: {{firstStep.getRawValue().payment}} UAH</div>
+      <div *ngFor="let category of secondStep && secondStep.getRawValue().categories">
+        {{category.name}}____{{category.percent}} %
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="complete()">Complete</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</section>

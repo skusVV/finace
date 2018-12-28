@@ -1,5 +1,8 @@
 <header class="header">
-  <h1 class="header_title">MyFinance</h1>
+  <h1 class="header_title">My-Finance</h1>
   <div class="header_user">{{userName | async}}</div>
-</header>
 
+</header>
+<div *ngIf="!(months | async).length">
+  <app-initial-form></app-initial-form>
+</div>
