@@ -30,7 +30,6 @@ export class RegisterController {
 
     if (req.body.password) {
       user.hash = bcrypt.hashSync(req.body.password, 10);
-
     }
 
     user.save((err, user) => {

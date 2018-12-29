@@ -14,6 +14,9 @@ import {AuthGuard} from '../services/guards/auth.guard';
 import {RouterEffects} from '../store/effects/router.effect';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {SharedModule} from '../modules/shared.module';
+import {PaymentEffects} from '../store/effects/payment.effects';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import {TokenInterceptor} from '../services/interceptor';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,7 @@ import {SharedModule} from '../modules/shared.module';
     NgtUniversalModule,
     HttpClientModule,
     StoreModule.forRoot(reducerToken, { metaReducers }),
-    EffectsModule.forRoot([UserEffect, RouterEffects]),
+    EffectsModule.forRoot([UserEffect, RouterEffects, PaymentEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -32,7 +35,12 @@ import {SharedModule} from '../modules/shared.module';
   ],
   providers: [
     reducerProvider,
-    AuthGuard
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
   ],
 })
 export class AppModule { }

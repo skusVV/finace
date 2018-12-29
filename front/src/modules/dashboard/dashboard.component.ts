@@ -4,6 +4,7 @@ import {Store, select} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {distinctUntilChanged, map} from 'rxjs/operators';
 import {ICategories, IMonth} from '../../store/reducers/data.reducer';
+import {InitialData} from '../../store/actions/payment.actions';
 
 @Component({
   selector: 'app-dashboard',
@@ -43,5 +44,6 @@ export class DashboardComponent implements OnInit{
     // it need to understand where we create category
     // then it will be useful for history.
     console.log(data);
+    this.store.dispatch(new InitialData(data))
   }
 }

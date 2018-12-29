@@ -2,22 +2,22 @@ import * as mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
-export const UserSchema = new Schema({
-  userName: {
+export const PaymentSchema = new Schema({
+  amount: {
     type: String,
-    required: 'Enter a title'
+    required: 'Enter a amount'
   },
-  mail: {
+  comment: {
     type: String,
-    unique: true,
-    required: 'Enter a mail'
+    required: 'Enter a payment comment'
   },
-  hash: {
+  userId: {
     type: String,
-    required: true
+    required: 'Enter a userId'
   },
   created_date: {
     type: Date,
     default: Date.now
   }
 });
+

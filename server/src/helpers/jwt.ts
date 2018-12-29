@@ -6,6 +6,7 @@ export class Jwt {
   jwt() {
     const secret = config.secret;
     const isRevoked = this.isRevoked;
+
     return expressJwt({ secret, isRevoked }).unless({
       path: [
         // public routes that don't require authentication
