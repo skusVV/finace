@@ -6,7 +6,7 @@ import {environment} from '../../environments/environment';
 import {IUserState, userReducer} from './user.reducer';
 import {IDataState, dataReducer} from './data.reducer';
 
-export function logger(reducer: ActionReducer<IState>): any {
+export function logger(reducer: ActionReducer<IState>) {
   return storeLogger()(reducer);
 }
 export interface IState {

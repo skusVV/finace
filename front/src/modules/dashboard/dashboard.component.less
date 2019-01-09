@@ -1,20 +1,45 @@
-@import "../../styles/constants";
+@import '../../styles/constants';
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 50px;
+  height: @header_height;
   background: @main_color;
   padding: @general_padding;
 
   &_title {
     font-size: @main_title;
-    color: @main_color_oposite;
+    color: @main_color_opposite;
   }
 
-  &_user {
-    font-size: @sub_title;
-    color: @main_color_oposite;
+  &_info {
+    display: flex;
+    justify-content: space-between;
+
+    &_name {
+      font-size: @sub_title;
+      color: @main_color_opposite;
+      margin-right: @general_margin;
+    }
+
+    &_amount {
+      font-size: @sub_title;
+      color: @main_color_opposite;
+    }
+  }
+}
+
+
+.dashboard{
+  height: calc(100vh - @header_height);
+
+  &_sidebar {
+    width: 20%;
+    border-right: 2px solid @color_shadow;
+  }
+
+  &_content{
+
   }
 }

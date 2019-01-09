@@ -1,18 +1,11 @@
 import {createReducer} from '../utils';
-// import {IUserState} from './user.reducer';
+import {CategoriesLoadSuccess, DATA_LOADED_SUCCESS, DataLoadedSuccess, LOAD_CATEGORIES_SUCCESS} from '../actions/data.actions';
 
-export const DATA_LOADED_SUCCESS = '[DATA] Loaded Success';
-
-interface IPayment {
+export interface IPayment {
   id: string;
   date: string;
   amount: number;
   comment: string;
-}
-
-export interface IMonth {
-  id: string;
-  payments: IPayment[];
 }
 
 export interface ICategories {
@@ -23,21 +16,27 @@ export interface ICategories {
 }
 
 export interface IDataState {
-  months: IMonth[];
+  payments: IPayment[];
   categories: ICategories[];
 }
 
 const initialState = {
-  months: [],
+  payments: [],
   categories: []
 };
 
-const setData = (state: IDataState, {payload:  {months = [], categories = []}}: any): IDataState => ({
-  months,
+export const setData = (state: IDataState, {payload:  {payments = [], categories = []}}: DataLoadedSuccess): IDataState => ({
+  payments,
+  categories
+});
+
+export const setCategories = (state: IDataState, {payload:  {categories = []}}: CategoriesLoadSuccess): IDataState => ({
+  ...state,
   categories
 });
 
 
 export const dataReducer = createReducer({
-  [DATA_LOADED_SUCCESS]: setData
+  [DATA_LOADED_SUCCESS]: setData,
+  [LOAD_CATEGORIES_SUCCESS]: setCategories
 }, initialState);

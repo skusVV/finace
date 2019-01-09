@@ -3,8 +3,8 @@ import {IState, userStateSelector, dataStateSelector} from '../../store/reducers
 import {Store, select} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {distinctUntilChanged, map} from 'rxjs/operators';
-import {ICategories, IMonth} from '../../store/reducers/data.reducer';
-import {InitialData} from '../../store/actions/payment.actions';
+import {ICategories, IPayment} from '../../store/reducers/data.reducer';
+import {InitialData} from '../../store/actions/data.actions';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +14,8 @@ import {InitialData} from '../../store/actions/payment.actions';
 export class DashboardComponent implements OnInit{
   userName: Observable<string>;
   categories: Observable<ICategories[]>;
-  months: Observable<IMonth[]>;
+  payments: Observable<IPayment[]>;
+  sidebarOpened = true;
 
   constructor(private store: Store<IState>) {}
 
@@ -34,16 +35,12 @@ export class DashboardComponent implements OnInit{
       map(({categories}) => categories)
     );
 
-    this.months = dataStateStream.pipe(
-      map(({months}) => months)
+    this.payments = dataStateStream.pipe(
+      map(({payments}) => payments)
     );
   }
 
-  saveInitialData(data: any) {
-    // SHOULD to set date (both for category and amount -- meybe should do it on backend) here,
-    // it need to understand where we create category
-    // then it will be useful for history.
-    console.log(data);
-    this.store.dispatch(new InitialData(data))
+  toggleSidebar() {
+    this.sidebarOpened = !this.sidebarOpened;
   }
 }

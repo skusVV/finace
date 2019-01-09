@@ -21,6 +21,16 @@ export class CategoriesController {
 
        res.json(categories);
     });
+  }
 
+  async getAllCategories(req, res, next) {
+    const userId = req.user.sub;
+
+    const query = CategoriesController.Categories.find({}, data => data ? data.filter(category => category.userId === userId) : []);
+
+    query.exec(function (err, categories) {
+      if (err) return next(err);
+      res.send(categories);
+    });
   }
 }

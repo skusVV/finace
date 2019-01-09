@@ -4,6 +4,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import {MatIconModule} from '@angular/material/icon';
     MatButtonModule,
     MatInputModule,
     MatIconModule,
+    MatCheckboxModule,
   ],
   providers: [],
   exports: [
@@ -21,7 +23,8 @@ import {MatIconModule} from '@angular/material/icon';
     ReactiveFormsModule,
     MatButtonModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatCheckboxModule,
   ]
 
 })

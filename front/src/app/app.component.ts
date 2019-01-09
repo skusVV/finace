@@ -1,11 +1,10 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {MatSnackBar} from '@angular/material';
-import {IState, userStateSelector} from '../store/reducers';
 import {select, Store} from '@ngrx/store';
-import {distinctUntilChanged, filter, map, tap, takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
+import {distinctUntilChanged, filter, map, tap, takeUntil} from 'rxjs/operators';
+import {IState, userStateSelector} from '../store/reducers';
 import {DEFAULT_ERROR, DEFAULT_SNACK_BAR_DURATION} from '../constants';
-
 
 @Component({
   selector: 'app-root',

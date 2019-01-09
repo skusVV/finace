@@ -2,18 +2,18 @@ import {NgModule} from '@angular/core';
 import {DashboardComponent} from './dashboard.component';
 import {DashboardRoutingModule} from './dashboard.routing';
 import {SharedModule} from '../shared.module';
-import {InitialFormComponent} from './initial-form/initial-form.component';
-import {MatStepperModule} from '@angular/material/stepper';
+// import {MatStepperModule} from '@angular/material/stepper';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    InitialFormComponent,
   ],
   imports: [
     SharedModule,
     DashboardRoutingModule,
-    MatStepperModule
+    // MatStepperModule,
+    MatSidenavModule
   ],
   providers: [
   ],

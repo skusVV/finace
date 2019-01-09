@@ -1,8 +1,19 @@
 <header class="header">
   <h1 class="header_title">My-Finance</h1>
-  <div class="header_user">{{userName | async}}</div>
-
+  <div class="header_info">
+    <div class="header_info_name">{{userName | async}}</div>
+    <div class="header_info_amount">50 000</div>
+  </div>
 </header>
-<div *ngIf="!(months | async).length">
-  <app-initial-form (initialData)="saveInitialData($event)"></app-initial-form>
-</div>
+
+<mat-sidenav-container class="dashboard">
+  <mat-sidenav class="dashboard_sidebar" #sidenav mode="side" [(opened)]="sidebarOpened">
+    Sidenav content
+  </mat-sidenav>
+  <mat-sidenav-content class="dashboard_content" >
+    <button mat-button (click)="toggleSidebar()">
+      <mat-icon *ngIf="sidebarOpened">arrow_back</mat-icon>
+      <mat-icon *ngIf="!sidebarOpened">arrow_forward</mat-icon>
+    </button>
+  </mat-sidenav-content>
+</mat-sidenav-container>
