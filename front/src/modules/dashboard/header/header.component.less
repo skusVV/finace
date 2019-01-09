@@ -1,0 +1,31 @@
+@import '../../../styles/constants';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: @header_height;
+  background: @main_color;
+  padding: @general_padding;
+
+  &_title {
+    font-size: @main_title;
+    color: @main_color_opposite;
+  }
+
+  &_info {
+    display: flex;
+    justify-content: space-between;
+
+    &_name {
+      font-size: @sub_title;
+      color: @main_color_opposite;
+      margin-right: @general_margin;
+    }
+
+    &_amount {
+      font-size: @sub_title;
+      color: @main_color_opposite;
+    }
+  }
+}

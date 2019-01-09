@@ -2,17 +2,17 @@ import {NgModule} from '@angular/core';
 import {DashboardComponent} from './dashboard.component';
 import {DashboardRoutingModule} from './dashboard.routing';
 import {SharedModule} from '../shared.module';
-// import {MatStepperModule} from '@angular/material/stepper';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {HeaderComponent} from './header/header.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
+    HeaderComponent
   ],
   imports: [
     SharedModule,
     DashboardRoutingModule,
-    // MatStepperModule,
     MatSidenavModule
   ],
   providers: [
