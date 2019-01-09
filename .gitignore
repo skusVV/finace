@@ -40,6 +40,7 @@ Thumbs.db
 
 /front/node_modules/
 /front/dist/
+/front/dist/package-lock.json
 /server/node_modules/
 /server/dist/
 /server/config.ts
