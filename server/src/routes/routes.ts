@@ -19,6 +19,6 @@ export class Routes {
 
     app.route('/api/v1/categories')
       .get(this.categoriesController.getAllCategories)
-      .post(this.categoriesController.addCategories);
+      .post(this.categoriesController.addCategory);
   }
 }

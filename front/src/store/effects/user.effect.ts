@@ -16,6 +16,7 @@ import {of} from 'rxjs';
 import {RedirectTo} from '../actions/router.actions';
 import {Store} from '@ngrx/store';
 import {IState} from '../reducers/index';
+import {USER_TOKEN} from '../reducers/user.reducer';
 
 @Injectable()
 export class UserEffect {
@@ -47,7 +48,8 @@ export class UserEffect {
 
     this.loginUserSuccessStream = actionsStream.pipe(
       ofType<LoginUserSuccess>(USER_LOGIN_SUCCESS),
-      tap(() => {
+      tap(({payload: {token}}) => {
+        sessionStorage.setItem(USER_TOKEN, token);
         this.store.dispatch(new RedirectTo(['/dashboard']));
       }),
     );

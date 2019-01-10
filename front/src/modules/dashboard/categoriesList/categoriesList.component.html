@@ -1,0 +1,14 @@
+<div class="categories">
+  <div class="categories_add">
+    <mat-icon class="categories_add_icon"
+              matTooltip="Click, to add new category"
+              (click)="addCategory()">add</mat-icon>
+  </div>
+  <div class="categories_list">
+    <div class="categories_list_empty"
+         *ngIf="!categories.length"
+         matTooltip="Please, add some categories">There no any categories</div>
+    <div class="categories_list_full"
+         *ngFor="let category of categories">{{category.name}}</div>
+  </div>
+</div>

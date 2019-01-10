@@ -11,6 +11,9 @@ export const CategoriesSchema = new Schema({
     type: Number,
     required: 'Enter a percent of Category'
   },
+  description: {
+    type: String,
+  },
   userId: {
     type: String,
     required: 'Enter a userId'

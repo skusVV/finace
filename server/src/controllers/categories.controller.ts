@@ -4,22 +4,16 @@ import * as mongoose from 'mongoose';
 export class CategoriesController {
   static Categories = mongoose.model('Categories', CategoriesSchema);
 
-  async addCategories(req, res, next) {
+  async addCategory(req, res, next) {
     const userId = req.user.sub;
-    const categories = req.body.categories;
-    const categoriesWithUserId = categories.map(category => {
-      return {
-        ...category,
-        userId
-      }
-    });
+    const category = new CategoriesController.Categories({...req.body, userId});
 
-    CategoriesController.Categories.create(categoriesWithUserId, function (err, categories) {
+    category.save((err, category) => {
       if (err) {
         res.send(err);
       }
 
-       res.json(categories);
+      res.json(category);
     });
   }
 

@@ -1,5 +1,11 @@
 import {createReducer} from '../utils';
-import {CategoriesLoadSuccess, DATA_LOADED_SUCCESS, DataLoadedSuccess, LOAD_CATEGORIES_SUCCESS} from '../actions/data.actions';
+import {
+  ADD_CATEGORY_SUCCESS, AddCategorySuccess,
+  CategoriesLoadSuccess,
+  DATA_LOADED_SUCCESS,
+  DataLoadedSuccess,
+  LOAD_CATEGORIES_SUCCESS
+} from '../actions/data.actions';
 
 export interface IPayment {
   id: string;
@@ -8,7 +14,7 @@ export interface IPayment {
   comment: string;
 }
 
-export interface ICategories {
+export interface ICategory {
   id: string;
   name: string;
   percent: number;
@@ -17,7 +23,7 @@ export interface ICategories {
 
 export interface IDataState {
   payments: IPayment[];
-  categories: ICategories[];
+  categories: ICategory[];
 }
 
 const initialState = {
@@ -35,8 +41,14 @@ export const setCategories = (state: IDataState, {payload:  {categories = []}}: 
   categories
 });
 
+export const setCategory = (state: IDataState, {payload:  {category}}: AddCategorySuccess): IDataState => ({
+  ...state,
+  categories: [...state.categories, category]
+});
+
 
 export const dataReducer = createReducer({
   [DATA_LOADED_SUCCESS]: setData,
-  [LOAD_CATEGORIES_SUCCESS]: setCategories
+  [LOAD_CATEGORIES_SUCCESS]: setCategories,
+  [ADD_CATEGORY_SUCCESS]: setCategory
 }, initialState);

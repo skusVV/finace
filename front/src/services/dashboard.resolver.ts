@@ -6,10 +6,10 @@ import {Store, select} from '@ngrx/store';
 import {IState, dataStateSelector} from '../store/reducers';
 import {LoadCategories} from '../store/actions/data.actions';
 import {map, take} from 'rxjs/operators';
-import {ICategories} from '../store/reducers/data.reducer';
+import {ICategory} from '../store/reducers/data.reducer';
 
 @Injectable()
-export class DashboardResolver implements Resolve<Observable<ICategories[] | null>> {
+export class DashboardResolver implements Resolve<Observable<ICategory[] | null>> {
   constructor(private http: HttpClient, private store: Store<IState>) {}
 
   resolve() {
@@ -18,8 +18,8 @@ export class DashboardResolver implements Resolve<Observable<ICategories[] | nul
     return this.waitData();
   }
 
-  private waitData(): Observable<ICategories[]> {
-    return this.store.pipe<ICategories[]>(
+  private waitData(): Observable<ICategory[]> {
+    return this.store.pipe<ICategory[]>(
       select(dataStateSelector),
       map(({categories}) => categories),
       take(1)

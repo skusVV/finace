@@ -1,5 +1,7 @@
 import {createReducer} from '../utils';
-import {USER_LOGIN_FAIL, USER_LOGIN_SUCCESS} from '../actions/user.actions'
+import {USER_LOGIN_FAIL, USER_LOGIN_SUCCESS} from '../actions/user.actions';
+
+export const USER_TOKEN = 'userToken';
 
 export interface IUserState {
   userName: string;
@@ -9,11 +11,13 @@ export interface IUserState {
   error: string;
 }
 
+const token = sessionStorage.getItem(USER_TOKEN) || null;
+
 const initialState = {
   userName: null,
-  auth: false,
+  auth: !!token,
   mail: null,
-  token: null,
+  token,
   error: null,
 };
 
