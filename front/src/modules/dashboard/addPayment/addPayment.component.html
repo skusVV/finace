@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+  <p>Payment amount:</p>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.amount" required type="number">
+  </mat-form-field>
+  <p>Currency of payment:</p>
+  <mat-form-field>
+    <mat-select placeholder="Select Currency">
+      <mat-option *ngFor="let currency of data.availableCurrencies"
+                  (click)="setCurrency(currency)"
+                  [value]="currency">
+        {{currency}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <p>Description of Payment:</p>
+  <mat-form-field>
+    <textarea matInput placeholder="Description" [(ngModel)]="data.description"></textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Add</button>
+</div>

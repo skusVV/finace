@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {IDialogData} from '../dashboard.component';
+import {ICategoryDialog} from '../dashboard.component';
 
 @Component({
   selector: 'app-add-category',
@@ -10,9 +10,9 @@ import {IDialogData} from '../dashboard.component';
 export class AddCategoryComponent {
 
   constructor(public dialogRef: MatDialogRef<AddCategoryComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: IDialogData) {}
+              @Inject(MAT_DIALOG_DATA) public data: ICategoryDialog) {}
 
-  onNoClick(): void {
+  onNoClick() {
     this.dialogRef.close();
   }
 }

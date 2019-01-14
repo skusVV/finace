@@ -5,15 +5,25 @@
   &_add{
     display: flex;
     justify-content: flex-end;
-    background: @color_shadow;
+    background: @main_color_opposite;
     padding: @general_padding;
-
+    border-bottom: 1px solid @color_shadow;
     &_icon {
       cursor: pointer;
     }
   }
 
-  &_list{
-    padding: @general_padding;
+  &_list {
+    &_full {
+      padding: @general_padding;
+      cursor: pointer;
+      &:hover{
+        background: @color_shadow;
+      }
+
+      &-selected {
+        background: @color_shadow;
+      }
+    }
   }
 }

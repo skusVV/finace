@@ -1,11 +1,19 @@
 import {Action} from '@ngrx/store';
 import {ICategory, IPayment} from '../reducers/data.reducer';
+import {ICurrency} from '../../modules/dashboard/dashboard.component';
 
 export const DATA_LOADED_SUCCESS = '[DATA] Loaded Success';
 export const LOAD_CATEGORIES = '[DATA] Load Categories';
 export const LOAD_CATEGORIES_SUCCESS = '[DATA] Load Categories Success';
+export const LOAD_PAYMENTS = '[Data] Load Payments';
+export const LOAD_PAYMENTS_SUCCESS = '[Data] Load Payments Success';
+
+
 export const ADD_CATEGORY = '[DATA] Add Category';
 export const ADD_CATEGORY_SUCCESS = '[DATA] Add Category Success';
+export const SELECT_CATEGORY = '[DATA] Select Category';
+export const PAYMENT_TO_SELECTED_CATEGORY = '[DATA] Payment To Selected Category';
+export const PAYMENT_TO_SELECTED_CATEGORY_SUCCESS = '[DATA] Payment To Selected Category Success';
 
 
 export class DataLoadedSuccess implements Action {
@@ -31,6 +39,20 @@ export class CategoriesLoadSuccess implements Action {
   }
 }
 
+export class LoadPayments implements Action {
+  readonly type = LOAD_PAYMENTS;
+}
+
+export class PaymentsLoadSuccess implements Action {
+  readonly type = LOAD_PAYMENTS_SUCCESS;
+
+  readonly payload: {payments: any[]};
+
+  constructor(payments) {
+    this.payload = {payments};
+  }
+}
+
 
 export class AddCategory implements Action {
   readonly type = ADD_CATEGORY;
@@ -50,3 +72,29 @@ export class AddCategorySuccess implements Action {
   }
 }
 
+export class SelectCategory implements Action {
+  readonly type = SELECT_CATEGORY;
+  readonly payload: {categoryId: string};
+
+  constructor(categoryId) {
+    this.payload = {categoryId};
+  }
+}
+
+export class PaymentToSelectedCategory implements Action {
+  readonly type = PAYMENT_TO_SELECTED_CATEGORY;
+  readonly payload: {categoryId: string, amount: number, currency: ICurrency, description: string};
+
+  constructor(categoryId, amount, currency, description) {
+    this.payload = {categoryId, amount, currency, description};
+  }
+}
+
+export class PaymentToSelectedCategorySuccess implements Action {
+  readonly type = PAYMENT_TO_SELECTED_CATEGORY_SUCCESS;
+  readonly payload: {payment};
+
+  constructor(payment) {
+    this.payload = {payment};
+  }
+}

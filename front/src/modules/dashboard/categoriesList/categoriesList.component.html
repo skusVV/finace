@@ -9,6 +9,8 @@
          *ngIf="!categories.length"
          matTooltip="Please, add some categories">There no any categories</div>
     <div class="categories_list_full"
+         [class.categories_list_full-selected]="selectedCategory ? category._id === selectedCategory._id : false"
+         (click)="setCategory(category)"
          *ngFor="let category of categories">{{category.name}}</div>
   </div>
 </div>

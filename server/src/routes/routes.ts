@@ -15,6 +15,7 @@ export class Routes {
       .post(this.registerController.register);
 
     app.route('/api/v1/payments')
+      .get(this.paymentsController.getAllPayments)
       .post(this.paymentsController.newPayment);
 
     app.route('/api/v1/categories')

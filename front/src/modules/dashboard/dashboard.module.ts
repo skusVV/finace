@@ -6,13 +6,17 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {HeaderComponent} from './header/header.component';
 import {CategoriesListComponent} from './categoriesList/categoriesList.component';
 import {AddCategoryComponent} from './addCategory/addCategory.component';
+import {CategoryComponent} from './category/category.component';
+import {AddPaymentComponent} from './addPayment/addPayment.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     HeaderComponent,
     CategoriesListComponent,
-    AddCategoryComponent
+    AddCategoryComponent,
+    CategoryComponent,
+    AddPaymentComponent,
   ],
   imports: [
     SharedModule,
@@ -22,6 +26,9 @@ import {AddCategoryComponent} from './addCategory/addCategory.component';
   providers: [
   ],
   bootstrap: [DashboardComponent],
-  entryComponents: [AddCategoryComponent]
+  entryComponents: [
+    AddCategoryComponent,
+    AddPaymentComponent
+  ]
 })
 export class DashboardModule { }

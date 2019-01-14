@@ -8,9 +8,15 @@ import {ICategory} from '../../../store/reducers/data.reducer';
 })
 export class CategoriesListComponent {
   @Input() categories: ICategory[];
+  @Input() selectedCategory: ICategory;
   @Output() addNewCategory = new EventEmitter<void>();
+  @Output() selectCategory = new EventEmitter<string>();
 
   addCategory() {
     this.addNewCategory.emit();
+  }
+
+  setCategory({_id}) {
+    this.selectCategory.emit(_id)
   }
 }

@@ -8,6 +8,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialogModule} from '@angular/material/dialog';
 import {FormsModule} from '@angular/forms';
+import {MatSelectModule} from '@angular/material/select';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import {FormsModule} from '@angular/forms';
     MatTooltipModule,
     MatDialogModule,
     FormsModule,
+    MatSelectModule,
+    MatTableModule,
   ],
   providers: [],
   exports: [
@@ -34,6 +38,8 @@ import {FormsModule} from '@angular/forms';
     MatTooltipModule,
     MatDialogModule,
     FormsModule,
+    MatSelectModule,
+    MatTableModule,
   ]
 
 })

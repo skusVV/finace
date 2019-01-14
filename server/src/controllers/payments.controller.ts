@@ -6,15 +6,25 @@ export class PaymentsController {
 
   async newPayment(req, res, next) {
     const userId = req.user.sub;
-    const amount = req.body.amount;
-    const payment = new PaymentsController.Payment({amount, userId, comment: 'Initial payment'});
+    const payment = new PaymentsController.Payment({...req.body, userId});
 
-    payment.save((err, user) => {
+    payment.save((err, payment) => {
       if (err) {
         res.send(err);
       }
 
-      res.json(user);
+      res.json(payment);
+    });
+  }
+
+  async getAllPayments(req, res, next) {
+    const userId = req.user.sub;
+
+    const query = PaymentsController.Payment.find({}, data => data ? data.filter(payment => payment.userId === userId) : []);
+
+    query.exec(function (err, payments) {
+      if (err) return next(err);
+      res.send(payments);
     });
   }
 }

@@ -8,7 +8,7 @@ const routes: Routes = [
     path: '',
     loadChildren: '../modules/dashboard/dashboard.module#DashboardModule',
     canActivate: [AuthGuard],
-    resolve: { categories: DashboardResolver }
+    resolve: { data: DashboardResolver }
   },
   {
     path: 'login/',

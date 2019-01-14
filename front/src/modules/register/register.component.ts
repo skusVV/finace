@@ -20,7 +20,6 @@ export class RegisterComponent {
   constructor(private store: Store<IState>){}
 
   register() {
-    // console.log(this.formData)
     this.store.dispatch(new RegisterUser(this.formData));
   }
 
