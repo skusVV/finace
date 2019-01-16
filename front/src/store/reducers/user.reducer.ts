@@ -21,8 +21,6 @@ const initialState = {
   error: null,
 };
 
-// const clearReducer = (): IUserState => initialState;
-
 const setError = (state: IUserState, {payload: {error}}: any): IUserState => ({...state, error});
 
 const setUserData = (state: IUserState, {payload:  {userName = null, mail = null, token = null, auth = false}}: LoginUserSuccess): IUserState => ({

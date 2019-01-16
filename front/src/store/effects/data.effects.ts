@@ -32,6 +32,7 @@ export class DataEffects {
       switchMap(() =>
         this.http.get(`/api/v1/categories`),
       ),
+      // TODO add catch Error handler
       map(categories => new CategoriesLoadSuccess(categories)),
     );
 
@@ -40,6 +41,7 @@ export class DataEffects {
       switchMap(({payload}) =>
         this.http.post(`/api/v1/categories`, payload),
       ),
+      // TODO add catch Error handler
       map(category => new AddCategorySuccess(category)),
     );
 
@@ -48,6 +50,7 @@ export class DataEffects {
       switchMap(({payload}) =>
         this.http.post(`/api/v1/payments`, payload),
       ),
+      // TODO add catch Error handler
       map(payment => new PaymentToSelectedCategorySuccess(payment)),
     );
 
@@ -56,6 +59,7 @@ export class DataEffects {
       switchMap(() =>
         this.http.get(`/api/v1/payments`),
       ),
+      // TODO add catch Error handler
       map(payments => new PaymentsLoadSuccess(payments)),
     );
 
@@ -65,6 +69,7 @@ export class DataEffects {
       switchMap(() =>
         this.http.get(`https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json`),
       ),
+      // TODO add catch Error handler
       map(currencyExchange => new LoadCurrencyExchangeSuccess(currencyExchange)),
     );
   }

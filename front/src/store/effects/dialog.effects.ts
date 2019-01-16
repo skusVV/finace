@@ -34,6 +34,8 @@ export class DialogEffects {
           .pipe(
             take(1),
           )
+          // TODO add filter to name, description, percent
+          // TODO do not use ({dispatch: false}), i can dispatch AddCategory to
           .subscribe(({name, description, percent}) => {
             this.store.dispatch(new AddCategory(name, percent, description));
           });
@@ -64,6 +66,8 @@ export class DialogEffects {
           .pipe(
             take(1),
           )
+          // TODO add filter to amount, currency, description
+          // TODO do not use ({dispatch: false}), i can dispatch AddCategory to
           .subscribe(({amount, currency, description}) => {
             this.store.dispatch(new PaymentToSelectedCategory(selectedCategory._id , amount, currency, description));
           });
