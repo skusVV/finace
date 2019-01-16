@@ -65,7 +65,6 @@ export class DialogEffects {
             take(1),
           )
           .subscribe(({amount, currency, description}) => {
-            // TODO this.selectedCategory._id
             this.store.dispatch(new PaymentToSelectedCategory(selectedCategory._id , amount, currency, description));
           });
       }),
