@@ -5,30 +5,24 @@ import {SharedModule} from '../shared.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {HeaderComponent} from './header/header.component';
 import {CategoriesListComponent} from './categoriesList/categoriesList.component';
-import {AddCategoryComponent} from './addCategory/addCategory.component';
 import {CategoryComponent} from './category/category.component';
-import {AddPaymentComponent} from './addPayment/addPayment.component';
+import {PaymentListComponent} from './paymentList/paymentList.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     HeaderComponent,
     CategoriesListComponent,
-    AddCategoryComponent,
     CategoryComponent,
-    AddPaymentComponent,
+    PaymentListComponent,
   ],
   imports: [
     SharedModule,
     DashboardRoutingModule,
-    MatSidenavModule
+    MatSidenavModule,
   ],
   providers: [
   ],
   bootstrap: [DashboardComponent],
-  entryComponents: [
-    AddCategoryComponent,
-    AddPaymentComponent
-  ]
 })
 export class DashboardModule { }

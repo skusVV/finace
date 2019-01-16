@@ -1,6 +1,14 @@
 import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {ICurrency, IPaymentDialog} from '../dashboard.component';
+import {ICurrency} from '../dashboard.component';
+
+interface IPaymentDialog {
+  amount: string;
+  currency: ICurrency;
+  availableCurrencies: string[];
+  description: string;
+  title: string;
+}
 
 @Component({
   selector: 'app-add-payment',

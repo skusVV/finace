@@ -12,16 +12,18 @@ import {
   PAYMENT_TO_SELECTED_CATEGORY,
   PaymentToSelectedCategorySuccess,
   LoadPayments,
-  LOAD_PAYMENTS, PaymentsLoadSuccess
+  LOAD_PAYMENTS, PaymentsLoadSuccess, LoadCurrencyExchange, LOAD_CURRENCY_EXCHANGE, LoadCurrencyExchangeSuccess
 } from '../actions/data.actions';
 import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class DataEffects {
-  @Effect() loadCategoriesStream: any;
-  @Effect() loadPaymentsStream: any;
-  @Effect() addCategoryStream: any;
-  @Effect() addPaymentStream: any;
+  @Effect() loadCategoriesStream: Observable<CategoriesLoadSuccess>;
+  @Effect() loadPaymentsStream: Observable<PaymentsLoadSuccess>;
+  @Effect() loadCurrencyExchange: Observable<LoadCurrencyExchangeSuccess>;
+  @Effect() addCategoryStream: Observable<AddCategorySuccess>;
+  @Effect() addPaymentStream: Observable<PaymentToSelectedCategorySuccess>;
 
   constructor(private actionsStream: Actions,
               private http: HttpClient) {
@@ -55,6 +57,15 @@ export class DataEffects {
         this.http.get(`/api/v1/payments`),
       ),
       map(payments => new PaymentsLoadSuccess(payments)),
+    );
+
+
+    this.loadCurrencyExchange = actionsStream.pipe(
+      ofType<LoadCurrencyExchange>(LOAD_CURRENCY_EXCHANGE),
+      switchMap(() =>
+        this.http.get(`https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json`),
+      ),
+      map(currencyExchange => new LoadCurrencyExchangeSuccess(currencyExchange)),
     );
   }
 }

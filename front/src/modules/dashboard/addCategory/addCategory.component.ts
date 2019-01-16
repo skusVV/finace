@@ -1,6 +1,12 @@
 import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {ICategoryDialog} from '../dashboard.component';
+
+interface ICategoryDialog {
+  name: string;
+  percent: number;
+  description: string;
+  title: string;
+}
 
 @Component({
   selector: 'app-add-category',

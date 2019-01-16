@@ -2,12 +2,12 @@ import {Action} from '@ngrx/store';
 import {ICategory, IPayment} from '../reducers/data.reducer';
 import {ICurrency} from '../../modules/dashboard/dashboard.component';
 
-export const DATA_LOADED_SUCCESS = '[DATA] Loaded Success';
 export const LOAD_CATEGORIES = '[DATA] Load Categories';
 export const LOAD_CATEGORIES_SUCCESS = '[DATA] Load Categories Success';
 export const LOAD_PAYMENTS = '[Data] Load Payments';
 export const LOAD_PAYMENTS_SUCCESS = '[Data] Load Payments Success';
-
+export const LOAD_CURRENCY_EXCHANGE = '[DATA] Load Currency Exchange';
+export const LOAD_CURRENCY_EXCHANGE_SUCCESS = '[DATA] Load Currency Exchange Success';
 
 export const ADD_CATEGORY = '[DATA] Add Category';
 export const ADD_CATEGORY_SUCCESS = '[DATA] Add Category Success';
@@ -15,15 +15,6 @@ export const SELECT_CATEGORY = '[DATA] Select Category';
 export const PAYMENT_TO_SELECTED_CATEGORY = '[DATA] Payment To Selected Category';
 export const PAYMENT_TO_SELECTED_CATEGORY_SUCCESS = '[DATA] Payment To Selected Category Success';
 
-
-export class DataLoadedSuccess implements Action {
-  readonly type = DATA_LOADED_SUCCESS;
-  readonly payload: {payments: IPayment[], categories: ICategory[]};
-
-  constructor(payments, categories) {
-    this.payload = {payments, categories};
-  }
-}
 
 export class LoadCategories implements Action {
   readonly type = LOAD_CATEGORIES;
@@ -96,5 +87,19 @@ export class PaymentToSelectedCategorySuccess implements Action {
 
   constructor(payment) {
     this.payload = {payment};
+  }
+}
+
+export class LoadCurrencyExchange implements Action {
+  readonly type = LOAD_CURRENCY_EXCHANGE;
+}
+
+export class LoadCurrencyExchangeSuccess implements Action {
+  readonly type = LOAD_CURRENCY_EXCHANGE_SUCCESS;
+
+  readonly payload: {currencyExchange};
+
+  constructor(currencyExchange) {
+    this.payload = {currencyExchange};
   }
 }

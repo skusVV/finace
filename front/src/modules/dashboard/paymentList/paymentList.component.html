@@ -1,0 +1,30 @@
+<div class="payments">
+  <table mat-table [dataSource]="payments" class="payments_table">
+    <ng-container matColumnDef="created_date">
+      <th mat-header-cell *matHeaderCellDef
+          class="payments_table_field"> Item </th>
+      <td mat-cell *matCellDef="let payment"
+          (click)="selectRow(payment)"
+          class="payments_table_field"> {{changeDate(payment.created_date)}} </td>
+      <td mat-footer-cell
+          (click)="selectRow(payment)"
+          class="payments_table_field"
+          *matFooterCellDef> Total </td>
+    </ng-container>
+
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef
+          class="payments_table_field"> Cost </th>
+      <td mat-cell *matCellDef="let payment"
+          (click)="selectRow(payment)"
+          class="payments_table_field"> {{payment.amount}} {{payment.currency}}</td>
+      <td mat-footer-cell *matFooterCellDef
+          (click)="selectRow(payment)"
+          class="payments_table_field payments_table_field-bold"> {{getTotalCost()}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+  </table>
+</div>

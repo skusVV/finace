@@ -1,0 +1,19 @@
+@import '../../../styles/constants';
+
+.payments {
+  display: inline-block;
+  background: #fff;
+  height: calc(100vh - (@header_height * 3 + @general_padding));
+  overflow-y: scroll;
+
+  &_table {
+    &_field {
+      padding: @general_padding;
+      cursor: pointer;
+
+      &-bold {
+        font-weight: @text_bold;
+      }
+    }
+  }
+}

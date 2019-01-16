@@ -3,10 +3,9 @@ import {
   ADD_CATEGORY_SUCCESS,
   AddCategorySuccess,
   CategoriesLoadSuccess,
-  DATA_LOADED_SUCCESS,
-  DataLoadedSuccess,
-  LOAD_CATEGORIES_SUCCESS,
-  LOAD_PAYMENTS_SUCCESS,
+
+  LOAD_CATEGORIES_SUCCESS, LOAD_CURRENCY_EXCHANGE_SUCCESS,
+  LOAD_PAYMENTS_SUCCESS, LoadCurrencyExchangeSuccess,
   PAYMENT_TO_SELECTED_CATEGORY_SUCCESS, PaymentsLoadSuccess,
   PaymentToSelectedCategorySuccess,
   SELECT_CATEGORY,
@@ -29,55 +28,65 @@ export interface ICategory {
   description: string;
 }
 
+export interface ICurrencyExchange {
+  currencyName: string;
+  rate: number;
+}
+
 export interface IDataState {
   payments: IPayment[];
   categories: ICategory[];
   selectedCategory: ICategory;
+  currencyExchange: ICurrencyExchange[];
 }
 
 const initialState = {
   payments: [],
   categories: [],
-  selectedCategory: null
+  selectedCategory: null,
+  currencyExchange: [],
 };
 
-export const setData = (state: IDataState, {payload:  {payments = [], categories = []}}: DataLoadedSuccess): IDataState => ({
-  payments,
-  categories,
-  selectedCategory: null
-});
-
-export const setCategories = (state: IDataState, {payload:  {categories = []}}: CategoriesLoadSuccess): IDataState => ({
+const setCategories = (state: IDataState, {payload:  {categories = []}}: CategoriesLoadSuccess): IDataState => ({
   ...state,
   categories
 });
 
-export const setPayments = (state: IDataState, {payload:  {payments = []}}: PaymentsLoadSuccess): IDataState => ({
+const setPayments = (state: IDataState, {payload:  {payments = []}}: PaymentsLoadSuccess): IDataState => ({
   ...state,
   payments
 });
 
-export const addCategory = (state: IDataState, {payload:  {category}}: AddCategorySuccess): IDataState => ({
+const addCategory = (state: IDataState, {payload:  {category}}: AddCategorySuccess): IDataState => ({
   ...state,
   categories: [...state.categories, category]
 });
 
-export const selectCategory = (state: IDataState, {payload:  {categoryId}}: SelectCategory): IDataState => ({
+const selectCategory = (state: IDataState, {payload:  {categoryId}}: SelectCategory): IDataState => ({
   ...state,
   selectedCategory: state.categories.filter(category => category._id === categoryId)[0]
 });
 
-export const addPayment = (state: IDataState, {payload:  {payment}}: PaymentToSelectedCategorySuccess): IDataState => ({
+const addPayment = (state: IDataState, {payload:  {payment}}: PaymentToSelectedCategorySuccess): IDataState => ({
   ...state,
   payments: [...state.payments, payment]
 });
 
+const setCurrencyExchange = (state: IDataState, {payload:  {currencyExchange}}: LoadCurrencyExchangeSuccess): IDataState => ({
+  ...state,
+  currencyExchange: currencyExchange.filter(({cc}) => cc === 'USD' || cc === 'EUR').map(({cc, rate}) => {
+    return {
+      currencyName: cc,
+      rate
+    }
+  })
+});
 
 export const dataReducer = createReducer({
-  [DATA_LOADED_SUCCESS]: setData,
   [LOAD_CATEGORIES_SUCCESS]: setCategories,
   [ADD_CATEGORY_SUCCESS]: addCategory,
   [SELECT_CATEGORY]: selectCategory,
   [PAYMENT_TO_SELECTED_CATEGORY_SUCCESS]: addPayment,
-  [LOAD_PAYMENTS_SUCCESS]: setPayments
+  [LOAD_PAYMENTS_SUCCESS]: setPayments,
+  [LOAD_CURRENCY_EXCHANGE_SUCCESS]: setCurrencyExchange
 }, initialState);

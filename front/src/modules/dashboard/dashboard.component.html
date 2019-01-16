@@ -4,7 +4,7 @@
   <mat-sidenav class="dashboard_sidebar" #sidenav mode="side" [(opened)]="sidebarOpened">
     <app-categories-list
       [categories]="categories | async"
-      [selectedCategory]="selectedCategory"
+      [selectedCategory]="selectedCategory | async"
       (selectCategory)="selectCategory($event)"
       (addNewCategory)="addNewCategory()"></app-categories-list>
   </mat-sidenav>
@@ -16,11 +16,13 @@
       </button>
       <button mat-raised-button color="primary"
               (click)="makePayment()"
-              *ngIf="selectedCategory">
-        Add payment to category {{selectedCategory.name}}
+              *ngIf="selectedCategory | async">
+        Add payment to category {{(selectedCategory | async).name}}
       </button>
     </div>
-    <app-category [category]="selectedCategory"
-                  [payments]="payments"></app-category>
+    <app-category [category]="selectedCategory | async"
+                  [currencyExchange]="currencyExchange | async"
+                  [payments]="payments | async"
+                  (selectPayment)="selectPayment($event)"></app-category>
   </mat-sidenav-content>
 </mat-sidenav-container>

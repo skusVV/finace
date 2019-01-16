@@ -18,10 +18,15 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {TokenInterceptor} from '../services/interceptor';
 import {DashboardResolver} from '../services/dashboard.resolver';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {DialogEffects} from '../store/effects/dialog.effects';
+import {AddPaymentComponent} from '../modules/dashboard/addPayment/addPayment.component';
+import {AddCategoryComponent} from '../modules/dashboard/addCategory/addCategory.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    AddCategoryComponent,
+    AddPaymentComponent
   ],
   imports:[
     BrowserAnimationsModule,
@@ -29,10 +34,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     NgtUniversalModule,
     HttpClientModule,
     StoreModule.forRoot(reducerToken, { metaReducers }),
-    EffectsModule.forRoot([UserEffect, RouterEffects, DataEffects]),
+    EffectsModule.forRoot([UserEffect, RouterEffects, DataEffects, DialogEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     AppRoutingModule,
-    MatSnackBarModule
+    MatSnackBarModule,
   ],
   providers: [
     reducerProvider,
@@ -44,5 +49,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
       multi: true
     }
   ],
+  entryComponents: [
+    AddCategoryComponent,
+    AddPaymentComponent
+  ]
 })
 export class AppModule { }
