@@ -67,6 +67,7 @@ export class DataEffects {
     this.loadCurrencyExchange = actionsStream.pipe(
       ofType<LoadCurrencyExchange>(LOAD_CURRENCY_EXCHANGE),
       switchMap(() =>
+        // TODO not sure about this api. EUR disappear from API
         this.http.get(`https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json`),
       ),
       // TODO add catch Error handler

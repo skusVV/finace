@@ -4,22 +4,22 @@ import {DIALOG_ADD_NEW_CATEGORY, DIALOG_ADD_NEW_PAYMENT, DialogAddNewCategory, D
 import {select, Store} from '@ngrx/store';
 import {dataStateSelector, IState} from '../reducers';
 import {MatDialog} from '@angular/material';
-import {AddCategoryComponent} from '../../modules/dashboard/addCategory/addCategory.component';
+import {AddCategoryComponent} from '../../components/addCategory/addCategory.component';
 import {AddCategory, PaymentToSelectedCategory} from '../actions/data.actions';
 import {currencies} from '../../constants';
-import {AddPaymentComponent} from '../../modules/dashboard/addPayment/addPayment.component';
-import {tap, take, switchMap, distinctUntilChanged} from 'rxjs/operators';
+import {AddPaymentComponent} from '../../components/addPayment/addPayment.component';
+import {tap, take, switchMap, distinctUntilChanged, filter, map} from 'rxjs/operators';
 
 @Injectable()
 export class DialogEffects {
-  @Effect({dispatch: false}) dialogOpenModalCategoryStream;
-  @Effect({dispatch: false}) dialogOpenModalPaymentStream;
+  @Effect() dialogOpenModalCategoryStream;
+  @Effect() dialogOpenModalPaymentStream;
 
   constructor(private actionsStream: Actions, private store: Store<IState>, public dialog: MatDialog) {
 
     this.dialogOpenModalCategoryStream = actionsStream.pipe(
       ofType<DialogAddNewCategory>(DIALOG_ADD_NEW_CATEGORY),
-      tap(() => {
+      switchMap(() => {
          const dialogRef = this.dialog.open(AddCategoryComponent, {
           width: '300px',
           data: {
@@ -30,15 +30,12 @@ export class DialogEffects {
           }
         });
 
-        dialogRef.afterClosed()
+        return dialogRef.afterClosed()
           .pipe(
             take(1),
-          )
-          // TODO add filter to name, description, percent
-          // TODO do not use ({dispatch: false}), i can dispatch AddCategory to
-          .subscribe(({name, description, percent}) => {
-            this.store.dispatch(new AddCategory(name, percent, description));
-          });
+            filter(data => !!data),
+            map(({name, description, percent}) => new AddCategory(name, percent, description)),
+          );
       }),
     );
 
@@ -50,7 +47,7 @@ export class DialogEffects {
           take(1),
         )
       ),
-      tap(({selectedCategory}) => {
+      switchMap(({selectedCategory}) => {
         const dialogRef = this.dialog.open(AddPaymentComponent, {
           width: '300px',
           data: {
@@ -62,15 +59,12 @@ export class DialogEffects {
           }
         });
 
-        dialogRef.afterClosed()
+        return dialogRef.afterClosed()
           .pipe(
             take(1),
-          )
-          // TODO add filter to amount, currency, description
-          // TODO do not use ({dispatch: false}), i can dispatch AddCategory to
-          .subscribe(({amount, currency, description}) => {
-            this.store.dispatch(new PaymentToSelectedCategory(selectedCategory._id , amount, currency, description));
-          });
+            filter(data => !!data),
+            map(({amount, currency, description}) => new PaymentToSelectedCategory(selectedCategory._id , amount, currency, description))
+          );
       }),
     );
   }

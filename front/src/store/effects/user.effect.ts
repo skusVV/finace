@@ -28,6 +28,7 @@ export class UserEffect {
     this.loginUserStream = actionsStream.pipe(
       ofType<LoginUser>(USER_LOGIN),
       switchMap(({payload: {userName, password}}) =>
+        // TODO should use dto model instead any
         http.post<any>(`/api/v1/user/auth`, {userName, password}).pipe(
           map(({userName, mail, token}) => new LoginUserSuccess(userName, mail, token)),
           catchError(({error}) => of(new LoginUserFail( error.text))),
@@ -38,6 +39,7 @@ export class UserEffect {
     this.registerUserStream = actionsStream.pipe(
       ofType<RegisterUser>(USER_REGISTER),
       switchMap(({payload: {userName, password, mail, promoCode}}) =>
+        // TODO should use dto model instead any
         http.post<any>(`/api/v1/user/register`, {userName, password, mail, promoCode}).pipe(
           tap(() => {
             this.store.dispatch(new RedirectTo(['/login']));

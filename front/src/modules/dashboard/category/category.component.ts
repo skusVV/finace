@@ -9,6 +9,7 @@ import {ICategory, ICurrencyExchange, IPayment} from '../../../store/reducers/da
 export class CategoryComponent {
   @Input() category: ICategory;
   @Input() payments: IPayment[];
+  @Input() selectedPayment: IPayment;
   @Input() currencyExchange: ICurrencyExchange[];
   @Output() selectPayment = new EventEmitter<IPayment>();
 

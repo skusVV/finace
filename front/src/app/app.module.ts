@@ -19,8 +19,8 @@ import {TokenInterceptor} from '../services/interceptor';
 import {DashboardResolver} from '../services/dashboard.resolver';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DialogEffects} from '../store/effects/dialog.effects';
-import {AddPaymentComponent} from '../modules/dashboard/addPayment/addPayment.component';
-import {AddCategoryComponent} from '../modules/dashboard/addCategory/addCategory.component';
+import {AddPaymentComponent} from '../components/addPayment/addPayment.component';
+import {AddCategoryComponent} from '../components/addCategory/addCategory.component';
 
 @NgModule({
   declarations: [

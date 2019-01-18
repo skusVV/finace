@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {ICurrency} from '../dashboard.component';
+import {ICurrency} from '../../constants';
 
 interface IPaymentDialog {
   amount: string;

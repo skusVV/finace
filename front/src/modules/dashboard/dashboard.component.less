@@ -1,6 +1,6 @@
 @import '../../styles/constants';
 
-.dashboard{
+.dashboard {
   height: calc(100vh - @header_height);
 
   &_sidebar {
@@ -8,12 +8,29 @@
     border-right: 2px solid @color_shadow;
   }
 
-  &_content{
-    &_controls{
+  &_content {
+    &_controls {
       display: flex;
       justify-content: space-between;
       padding: @general_padding;
       background: @main_color_opposite;
+    }
+  }
+
+  &_content_close {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .dashboard {
+
+    &_sidebar {
+      width: 75%;
+    }
+
+    &_content_close {
+      display: none;
     }
   }
 }

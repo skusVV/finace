@@ -38,12 +38,4 @@ export class PaymentListComponent {
       ? amount
       : amount * this.currencyExchange.find(currency => currency.currencyName === type).rate;
   }
-  //
-  // private addCurrencySymbol(amount: string): string {
-  //   return `${amount} UAH`;
-  // }
-  //
-  // private reduceAmounts() {
-  //   this.payments.reduce((sum, payment) => sum + this.exchangeCurrency(Number(payment.amount), payment.currency), 0);
-  // }
 }

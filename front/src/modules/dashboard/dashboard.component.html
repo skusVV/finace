@@ -8,13 +8,14 @@
       (selectCategory)="selectCategory($event)"
       (addNewCategory)="addNewCategory()"></app-categories-list>
   </mat-sidenav>
-  <mat-sidenav-content class="dashboard_content" >
+  <mat-sidenav-content class="dashboard_content">
     <div class="dashboard_content_controls">
       <button mat-button (click)="toggleSidebar()">
         <mat-icon *ngIf="sidebarOpened" matTooltip="Hide sidebar">arrow_back</mat-icon>
         <mat-icon *ngIf="!sidebarOpened" matTooltip="Show sidebar">arrow_forward</mat-icon>
       </button>
       <button mat-raised-button color="primary"
+              [class.dashboard_content_close]="sidebarOpened"
               (click)="makePayment()"
               *ngIf="selectedCategory | async">
         Add payment to category {{(selectedCategory | async).name}}
@@ -23,6 +24,8 @@
     <app-category [category]="selectedCategory | async"
                   [currencyExchange]="currencyExchange | async"
                   [payments]="payments | async"
+                  [selectedPayment]="selectedPayment | async"
+                  [class.dashboard_content_close]="sidebarOpened"
                   (selectPayment)="selectPayment($event)"></app-category>
   </mat-sidenav-content>
 </mat-sidenav-container>

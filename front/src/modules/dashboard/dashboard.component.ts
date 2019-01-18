@@ -4,10 +4,8 @@ import {Store, select} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {distinctUntilChanged, map, switchMap, filter} from 'rxjs/operators';
 import {ICategory, ICurrencyExchange, IPayment} from '../../store/reducers/data.reducer';
-import {SelectCategory} from '../../store/actions/data.actions';
+import {SelectCategory, SelectPayment} from '../../store/actions/data.actions';
 import {DialogAddNewCategory, DialogAddNewPayment} from '../../store/actions/dialog.actions';
-
-export type ICurrency = 'USD' | 'UAH' | 'EUR';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,6 +19,7 @@ export class DashboardComponent implements OnInit {
   currencyExchange: Observable<ICurrencyExchange[]>;
   payments: Observable<IPayment[]>;
   selectedCategory: Observable<ICategory>;
+  selectedPayment: Observable<IPayment>;
 
   constructor(private store: Store<IState>) {}
 
@@ -47,6 +46,10 @@ export class DashboardComponent implements OnInit {
       map(({selectedCategory}) => selectedCategory),
     );
 
+    this.selectedPayment = dataStateStream.pipe(
+      map(({selectedPayment}) => selectedPayment),
+    );
+
     this.payments = dataStateStream.pipe(
       map(({selectedCategory}) => selectedCategory),
       filter(selectedCategory => !!selectedCategory),
@@ -65,7 +68,7 @@ export class DashboardComponent implements OnInit {
   }
 
   selectPayment(payment: IPayment) {
-    console.log(1, payment);
+    this.store.dispatch(new SelectPayment(payment));
   }
 
   addNewCategory() {

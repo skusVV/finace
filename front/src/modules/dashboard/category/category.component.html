@@ -6,7 +6,10 @@
     </div>
     <div class="category_header_percent">Part in general payment: {{category.percent}} %</div>
   </div>
-  <app-payment-list [payments]="payments"
-                    [currencyExchange]="currencyExchange"
-                    (selectPayment)="selectPayment.emit($event)"></app-payment-list>
+  <div class="category_content">
+    <app-payment-list [payments]="payments"
+                      [currencyExchange]="currencyExchange"
+                      (selectPayment)="selectPayment.emit($event)"></app-payment-list>
+    <app-payment [payment]="selectedPayment"></app-payment>
+  </div>
 </section>

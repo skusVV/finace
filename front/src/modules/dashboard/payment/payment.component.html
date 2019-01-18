@@ -1,0 +1,5 @@
+<section class="payment" *ngIf="!!payment">
+  <div>{{payment.amount}} {{payment.currency}}</div>
+  <div>{{payment.created_date}}</div>
+  <div>{{payment.description}}</div>
+</section>

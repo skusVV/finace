@@ -8,8 +8,8 @@ import {
   LOAD_PAYMENTS_SUCCESS, LoadCurrencyExchangeSuccess,
   PAYMENT_TO_SELECTED_CATEGORY_SUCCESS, PaymentsLoadSuccess,
   PaymentToSelectedCategorySuccess,
-  SELECT_CATEGORY,
-  SelectCategory
+  SELECT_CATEGORY, SELECT_PAYMENT,
+  SelectCategory, SelectPayment
 } from '../actions/data.actions';
 
 export interface IPayment {
@@ -37,6 +37,7 @@ export interface IDataState {
   payments: IPayment[];
   categories: ICategory[];
   selectedCategory: ICategory;
+  selectedPayment: IPayment;
   currencyExchange: ICurrencyExchange[];
 }
 
@@ -44,6 +45,7 @@ const initialState = {
   payments: [],
   categories: [],
   selectedCategory: null,
+  selectedPayment: null,
   currencyExchange: [],
 };
 
@@ -64,7 +66,13 @@ const addCategory = (state: IDataState, {payload:  {category}}: AddCategorySucce
 
 const selectCategory = (state: IDataState, {payload:  {categoryId}}: SelectCategory): IDataState => ({
   ...state,
-  selectedCategory: state.categories.filter(category => category._id === categoryId)[0]
+  selectedCategory: state.categories.filter(category => category._id === categoryId)[0],
+  selectedPayment: null,
+});
+
+const selectPayment = (state: IDataState, {payload:  {selectedPayment}}: SelectPayment): IDataState => ({
+  ...state,
+  selectedPayment,
 });
 
 const addPayment = (state: IDataState, {payload:  {payment}}: PaymentToSelectedCategorySuccess): IDataState => ({
@@ -88,5 +96,6 @@ export const dataReducer = createReducer({
   [SELECT_CATEGORY]: selectCategory,
   [PAYMENT_TO_SELECTED_CATEGORY_SUCCESS]: addPayment,
   [LOAD_PAYMENTS_SUCCESS]: setPayments,
-  [LOAD_CURRENCY_EXCHANGE_SUCCESS]: setCurrencyExchange
+  [LOAD_CURRENCY_EXCHANGE_SUCCESS]: setCurrencyExchange,
+  [SELECT_PAYMENT]: selectPayment
 }, initialState);

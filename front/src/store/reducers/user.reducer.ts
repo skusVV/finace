@@ -1,5 +1,5 @@
 import {createReducer} from '../utils';
-import {LoginUserSuccess, USER_LOGIN_FAIL, USER_LOGIN_SUCCESS} from '../actions/user.actions';
+import {LoginUserFail, LoginUserSuccess, USER_LOGIN_FAIL, USER_LOGIN_SUCCESS} from '../actions/user.actions';
 
 export const USER_TOKEN = 'userToken';
 
@@ -21,7 +21,7 @@ const initialState = {
   error: null,
 };
 
-const setError = (state: IUserState, {payload: {error}}: any): IUserState => ({...state, error});
+const setError = (state: IUserState, {payload: {error}}: LoginUserFail): IUserState => ({...state, error});
 
 const setUserData = (state: IUserState, {payload:  {userName = null, mail = null, token = null, auth = false}}: LoginUserSuccess): IUserState => ({
   userName,
