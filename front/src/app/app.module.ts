@@ -28,7 +28,7 @@ import {AddCategoryComponent} from '../components/addCategory/addCategory.compon
     AddCategoryComponent,
     AddPaymentComponent
   ],
-  imports:[
+  imports: [
     BrowserAnimationsModule,
     SharedModule,
     NgtUniversalModule,

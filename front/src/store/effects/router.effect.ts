@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 import {Store} from '@ngrx/store';
 import {IState} from '../reducers/index';
 import {tap} from 'rxjs/operators';
-import {ROUTER_REDIRECT_TO, RedirectTo} from '../actions/router.actions'
+import {ROUTER_REDIRECT_TO, RedirectTo} from '../actions/router.actions';
 
 @Injectable()
 export class RouterEffects {

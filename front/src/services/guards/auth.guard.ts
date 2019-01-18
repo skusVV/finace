@@ -3,7 +3,7 @@ import {CanActivate} from '@angular/router';
 import {Observable} from 'rxjs';
 import {select, Store} from '@ngrx/store';
 import {first, map} from 'rxjs/operators';
-import {IState} from '../../store/reducers/index'
+import {IState} from '../../store/reducers/index';
 import {userStateSelector} from '../../store/reducers';
 import {RedirectTo} from '../../store/actions/router.actions';
 
@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
       map(({auth}) => auth
         ? true
         : this.redirect())
-    )
+    );
   }
 
   private redirect(): false {

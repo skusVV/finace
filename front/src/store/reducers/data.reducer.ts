@@ -86,7 +86,7 @@ const setCurrencyExchange = (state: IDataState, {payload:  {currencyExchange}}: 
     return {
       currencyName: cc,
       rate
-    }
+    };
   })
 });
 

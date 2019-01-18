@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
 import {Store} from '@ngrx/store';
-import {IState} from '../../store/reducers/index'
+import {IState} from '../../store/reducers/index';
 import {RegisterUser} from '../../store/actions/user.actions';
 
 @Component({
@@ -17,7 +17,9 @@ export class RegisterComponent {
     promoCode: new FormControl(''),
   });
 
-  constructor(private store: Store<IState>){}
+  constructor(private store: Store<IState>) {
+
+  }
 
   register() {
     this.store.dispatch(new RegisterUser(this.formData));

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
 import {Store} from '@ngrx/store';
-import {IState} from '../../store/reducers/index'
+import {IState} from '../../store/reducers/index';
 import {LoginUser} from '../../store/actions/user.actions';
 import {RedirectTo} from '../../store/actions/router.actions';
 
@@ -18,7 +18,9 @@ export class LoginComponent {
     password: new FormControl(''),
   });
 
-  constructor(private store: Store<IState>){}
+  constructor(private store: Store<IState>) {
+
+  }
 
   login() {
     this.store.dispatch(new LoginUser(this.formData));

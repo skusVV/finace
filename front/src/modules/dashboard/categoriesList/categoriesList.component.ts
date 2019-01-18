@@ -17,6 +17,6 @@ export class CategoriesListComponent {
   }
 
   setCategory({_id}) {
-    this.selectCategory.emit(_id)
+    this.selectCategory.emit(_id);
   }
 }

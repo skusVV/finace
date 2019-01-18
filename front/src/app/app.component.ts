@@ -33,7 +33,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   openSnackBar(message = DEFAULT_ERROR) {
-    this.snackBar.open(message, '', { duration: DEFAULT_SNACK_BAR_DURATION})
+    this.snackBar.open(message, '', { duration: DEFAULT_SNACK_BAR_DURATION});
   }
-
 }
