@@ -18,8 +18,15 @@ export class Routes {
       .get(this.paymentsController.getAllPayments)
       .post(this.paymentsController.newPayment);
 
+    app.route('/api/v1/payments/:id')
+      .delete(this.paymentsController.deletePayment);
+
+
     app.route('/api/v1/categories')
       .get(this.categoriesController.getAllCategories)
       .post(this.categoriesController.addCategory);
+
+    app.route('/api/v1/categories/:id')
+      .delete(this.categoriesController.deleteCategory);
   }
 }

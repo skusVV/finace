@@ -10,7 +10,12 @@
          matTooltip="Please, add some categories">There no any categories</div>
     <div class="categories_list_full"
          [class.categories_list_full-selected]="selectedCategory ? category._id === selectedCategory._id : false"
-         (click)="setCategory(category)"
-         *ngFor="let category of categories">{{category.name}}</div>
+         (click)="setCategory(category._id)"
+         *ngFor="let category of categories">
+        {{category.name}}
+      <mat-icon class="categories_delete"
+                (click)="deletePayment($event, category._id)"
+                matTooltip="Delete category">delete</mat-icon>
+    </div>
   </div>
 </div>

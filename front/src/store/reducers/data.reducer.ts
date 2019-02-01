@@ -2,7 +2,7 @@ import {createReducer} from '../utils';
 import {
   ADD_CATEGORY_SUCCESS,
   AddCategorySuccess,
-  CategoriesLoadSuccess,
+  CategoriesLoadSuccess, DELETE_CATEGORY_SUCCESS, DELETE_PAYMENT_SUCCESS, DeleteCategorySuccess, DeletePaymentSuccess,
 
   LOAD_CATEGORIES_SUCCESS, LOAD_CURRENCY_EXCHANGE_SUCCESS,
   LOAD_PAYMENTS_SUCCESS, LoadCurrencyExchangeSuccess,
@@ -90,6 +90,18 @@ const setCurrencyExchange = (state: IDataState, {payload:  {currencyExchange}}: 
   })
 });
 
+const deletePayment = (state: IDataState, {payload:  {paymentId}}: DeletePaymentSuccess): IDataState => ({
+  ...state,
+  payments: state.payments.filter(({_id})=> _id !== paymentId),
+  selectedPayment: null
+});
+
+const deleteCategory = (state: IDataState, {payload:  {categoryId}}: DeleteCategorySuccess): IDataState => ({
+  ...state,
+  categories: state.categories.filter(({_id})=> _id !== categoryId),
+  selectedCategory: null
+});
+
 export const dataReducer = createReducer({
   [LOAD_CATEGORIES_SUCCESS]: setCategories,
   [ADD_CATEGORY_SUCCESS]: addCategory,
@@ -97,5 +109,7 @@ export const dataReducer = createReducer({
   [PAYMENT_TO_SELECTED_CATEGORY_SUCCESS]: addPayment,
   [LOAD_PAYMENTS_SUCCESS]: setPayments,
   [LOAD_CURRENCY_EXCHANGE_SUCCESS]: setCurrencyExchange,
-  [SELECT_PAYMENT]: selectPayment
+  [SELECT_PAYMENT]: selectPayment,
+  [DELETE_PAYMENT_SUCCESS]: deletePayment,
+  [DELETE_CATEGORY_SUCCESS]: deleteCategory
 }, initialState);

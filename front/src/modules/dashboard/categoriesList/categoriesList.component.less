@@ -6,8 +6,9 @@
     display: flex;
     justify-content: flex-end;
     background: @main_color_opposite;
-    padding: @general_padding;
+    height: @main_row_height;
     border-bottom: 1px solid @color_shadow;
+    align-items: center;
     &_icon {
       cursor: pointer;
     }
@@ -17,6 +18,8 @@
     &_full {
       padding: @general_padding;
       cursor: pointer;
+      position: relative;
+
       &:hover{
         background: @color_shadow;
       }
@@ -25,5 +28,13 @@
         background: @color_shadow;
       }
     }
+  }
+
+
+  &_delete {
+    font-size: 16px;
+    vertical-align: center;
+    position: absolute;
+    right: 0;
   }
 }

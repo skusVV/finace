@@ -1,7 +1,5 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
-import * as moment from 'moment';
 import {IPayment, ICurrencyExchange} from '../../../store/reducers/data.reducer';
-import {DATA_FORMAT} from '../../../constants';
 import {compose} from '../../../utils/compose';
 
 @Component({
@@ -24,18 +22,14 @@ export class PaymentListComponent {
     )();
   }
 
-  changeDate(date: string) {
-    // TODO rewrite to angular pipe
-    return moment(date).format(DATA_FORMAT);
-  }
-
   selectRow(payment: IPayment) {
     this.selectPayment.emit(payment);
   }
 
   private exchangeCurrency(amount: number, type: string): number {
-    return this.currencyExchange && type !== 'USD' && type !== 'EUR'
-      ? amount
-      : amount * this.currencyExchange.find(currency => currency.currencyName === type).rate;
+    return amount
+    // return this.currencyExchange && type !== 'USD' && type !== 'EUR'
+    //   ? amount
+    //   : amount * this.currencyExchange.find(currency => currency.currencyName === type).rate;
   }
 }

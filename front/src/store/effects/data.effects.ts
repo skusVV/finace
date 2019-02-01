@@ -12,7 +12,14 @@ import {
   PAYMENT_TO_SELECTED_CATEGORY,
   PaymentToSelectedCategorySuccess,
   LoadPayments,
-  LOAD_PAYMENTS, PaymentsLoadSuccess, LoadCurrencyExchange, LOAD_CURRENCY_EXCHANGE, LoadCurrencyExchangeSuccess
+  LOAD_PAYMENTS,
+  PaymentsLoadSuccess,
+  LoadCurrencyExchange,
+  LOAD_CURRENCY_EXCHANGE,
+  LoadCurrencyExchangeSuccess,
+  DeletePayment,
+  DELETE_PAYMENT,
+  DeletePaymentSuccess, DeleteCategorySuccess, DELETE_CATEGORY, DeleteCategory,
 } from '../actions/data.actions';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
@@ -24,6 +31,8 @@ export class DataEffects {
   @Effect() loadCurrencyExchange: Observable<LoadCurrencyExchangeSuccess>;
   @Effect() addCategoryStream: Observable<AddCategorySuccess>;
   @Effect() addPaymentStream: Observable<PaymentToSelectedCategorySuccess>;
+  @Effect() deletePaymentStream: Observable<DeletePaymentSuccess>;
+  @Effect() deleteCategoryStream: Observable<DeleteCategorySuccess>;
 
   constructor(private actionsStream: Actions,
               private http: HttpClient) {
@@ -72,6 +81,24 @@ export class DataEffects {
       ),
       // TODO add catch Error handler
       map(currencyExchange => new LoadCurrencyExchangeSuccess(currencyExchange)),
+    );
+
+    this.deletePaymentStream = actionsStream.pipe(
+      ofType<DeletePayment>(DELETE_PAYMENT),
+      switchMap(({payload: {paymentId}}) =>
+          this.http.delete(`/api/v1/payments/${paymentId}`),
+      ),
+      // TODO add catch Error handler
+      map((data: any) => new DeletePaymentSuccess(data.id)),
+    );
+
+    this.deleteCategoryStream = actionsStream.pipe(
+      ofType<DeleteCategory>(DELETE_CATEGORY),
+      switchMap(({payload: {categoryId}}) =>
+        this.http.delete(`/api/v1/categories/${categoryId}`),
+      ),
+      // TODO add catch Error handler
+      map((data: any) => new DeleteCategorySuccess(data.id)),
     );
   }
 }

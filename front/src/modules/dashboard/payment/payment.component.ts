@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {IPayment} from '../../../store/reducers/data.reducer';
 
 @Component({
@@ -8,4 +8,9 @@ import {IPayment} from '../../../store/reducers/data.reducer';
 })
 export class PaymentComponent {
   @Input() payment: IPayment;
+  @Output() deletePayment = new EventEmitter<string>();
+
+  onDelete() {
+    this.deletePayment.emit(this.payment._id);
+  }
 }

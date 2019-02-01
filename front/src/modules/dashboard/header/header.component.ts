@@ -7,6 +7,5 @@ import {Component, Input} from '@angular/core';
 })
 export class HeaderComponent {
   @Input() userName: string;
-  @Input() amount: number;
   @Input() title: string;
 }

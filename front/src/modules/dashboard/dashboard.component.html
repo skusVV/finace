@@ -1,9 +1,10 @@
-<app-header [userName]="userName | async" [amount]="50000" title="Dashboard"></app-header>
+<app-header [userName]="userName | async" title="Dashboard"></app-header>
 
 <mat-sidenav-container class="dashboard">
   <mat-sidenav class="dashboard_sidebar" #sidenav mode="side" [(opened)]="sidebarOpened">
     <app-categories-list
       [categories]="categories | async"
+      (deleteCategory)="onDeleteCategory($event)"
       [selectedCategory]="selectedCategory | async"
       (selectCategory)="selectCategory($event)"
       (addNewCategory)="addNewCategory()"></app-categories-list>
@@ -14,18 +15,23 @@
         <mat-icon *ngIf="sidebarOpened" matTooltip="Hide sidebar">arrow_back</mat-icon>
         <mat-icon *ngIf="!sidebarOpened" matTooltip="Show sidebar">arrow_forward</mat-icon>
       </button>
-      <button mat-raised-button color="primary"
-              [class.dashboard_content_close]="sidebarOpened"
-              (click)="makePayment()"
-              *ngIf="selectedCategory | async">
-        Add payment to category {{(selectedCategory | async).name}}
-      </button>
+      <button mat-button
+              *ngIf="!!(selectedCategory | async)"
+              (click)="addNewPayment()">Add payment</button>
     </div>
-    <app-category [category]="selectedCategory | async"
-                  [currencyExchange]="currencyExchange | async"
-                  [payments]="payments | async"
-                  [selectedPayment]="selectedPayment | async"
-                  [class.dashboard_content_close]="sidebarOpened"
-                  (selectPayment)="selectPayment($event)"></app-category>
+    <div class="dashboard_content_info">
+      <div>
+        <app-payment *ngIf="!!(selectedPayment | async)"
+                     [payment]="selectedPayment | async"
+                     (deletePayment)="onDeletePayment($event)"></app-payment>
+        </div>
+      <div>
+        <app-payment-list *ngIf="!!(payments | async)"
+                          [payments]="payments | async"
+                          [currencyExchange]="currencyExchange | async"
+                          (selectPayment)="selectPayment($event)"></app-payment-list>
+        </div>
+    </div>
+
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -27,4 +27,13 @@ export class CategoriesController {
       res.send(categories);
     });
   }
+
+  async deleteCategory(req, res, next) {
+    const query = CategoriesController.Categories.remove({'_id': req.params.id});
+
+    query.exec(function (err, categories) {
+      if (err) return next(err);
+      res.send({id: req.params.id});
+    });
+  }
 }

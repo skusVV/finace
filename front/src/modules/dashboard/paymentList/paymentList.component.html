@@ -5,7 +5,7 @@
           class="payments_table_field"> Item </th>
       <td mat-cell *matCellDef="let payment"
           (click)="selectRow(payment)"
-          class="payments_table_field"> {{changeDate(payment.created_date)}} </td>
+          class="payments_table_field"> {{payment.created_date | date}} </td>
       <td mat-footer-cell
           (click)="selectRow(payment)"
           class="payments_table_field"

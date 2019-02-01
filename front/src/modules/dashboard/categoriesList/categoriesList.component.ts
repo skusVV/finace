@@ -11,12 +11,18 @@ export class CategoriesListComponent {
   @Input() selectedCategory: ICategory;
   @Output() addNewCategory = new EventEmitter<void>();
   @Output() selectCategory = new EventEmitter<string>();
+  @Output() deleteCategory = new EventEmitter<string>();
 
   addCategory() {
     this.addNewCategory.emit();
   }
 
-  setCategory({_id}) {
-    this.selectCategory.emit(_id);
+  setCategory(id) {
+    this.selectCategory.emit(id);
+  }
+
+  deletePayment(event, id: string) {
+    event.stopPropagation();
+    this.deleteCategory.emit(id);
   }
 }

@@ -1,5 +1,6 @@
 <section class="payment" *ngIf="!!payment">
   <div>{{payment.amount}} {{payment.currency}}</div>
-  <div>{{payment.created_date}}</div>
+  <div>{{payment.created_date | date}}</div>
   <div>{{payment.description}}</div>
+  <button (click)="onDelete()">Delete</button>
 </section>

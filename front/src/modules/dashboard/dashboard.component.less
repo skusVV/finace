@@ -1,7 +1,7 @@
 @import '../../styles/constants';
 
 .dashboard {
-  height: calc(100vh - @header_height);
+  height: calc(100vh - @main_row_height);
 
   &_sidebar {
     width: 20%;
@@ -9,11 +9,19 @@
   }
 
   &_content {
+    //display: flex;
+    //justify-content: space-between;
     &_controls {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      padding: @general_padding;
+      height: @main_row_height;
       background: @main_color_opposite;
+    }
+
+    &_info{
+      display: flex;
+      justify-content: space-between;
     }
   }
 
