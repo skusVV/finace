@@ -26,13 +26,18 @@ import {Observable} from 'rxjs';
 
 @Injectable()
 export class DataEffects {
+  // TODO made separate effects load
   @Effect() loadCategoriesStream: Observable<CategoriesLoadSuccess>;
   @Effect() loadPaymentsStream: Observable<PaymentsLoadSuccess>;
   @Effect() loadCurrencyExchange: Observable<LoadCurrencyExchangeSuccess>;
+  // TODO made separate effects category
   @Effect() addCategoryStream: Observable<AddCategorySuccess>;
+  @Effect() deleteCategoryStream: Observable<DeleteCategorySuccess>;
+
+  // TODO made separate effects payments
   @Effect() addPaymentStream: Observable<PaymentToSelectedCategorySuccess>;
   @Effect() deletePaymentStream: Observable<DeletePaymentSuccess>;
-  @Effect() deleteCategoryStream: Observable<DeleteCategorySuccess>;
+
 
   constructor(private actionsStream: Actions,
               private http: HttpClient) {

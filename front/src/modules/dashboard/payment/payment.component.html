@@ -1,6 +1,15 @@
 <section class="payment" *ngIf="!!payment">
-  <div>{{payment.amount}} {{payment.currency}}</div>
-  <div>{{payment.created_date | date}}</div>
-  <div>{{payment.description}}</div>
-  <button (click)="onDelete()">Delete</button>
+  <div class="payment_header">
+    <div>{{payment.amount}} {{payment.currency}}</div>
+    <div>{{payment.created_date | date}}</div>
+  </div>
+  <div class="payment_info">
+    <div class="payment_info_main">
+      <div>{{payment.description}}</div>
+      <div>Check type please: cash, bank-debit, papers</div>
+    </div>
+    <div class="payment_info_bar">
+      <button mat-button (click)="onDelete()">Delete</button>
+    </div>
+  </div>
 </section>

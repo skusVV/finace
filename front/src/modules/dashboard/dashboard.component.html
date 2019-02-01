@@ -20,7 +20,7 @@
               (click)="addNewPayment()">Add payment</button>
     </div>
     <div class="dashboard_content_info">
-      <div>
+      <div class="dashboard_content_info_main">
         <app-payment *ngIf="!!(selectedPayment | async)"
                      [payment]="selectedPayment | async"
                      (deletePayment)="onDeletePayment($event)"></app-payment>
