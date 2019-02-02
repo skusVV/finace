@@ -1,4 +1,7 @@
-<app-header [userName]="userName | async" title="Dashboard"></app-header>
+<app-header
+  [userName]="userName | async"
+  (logout)="logout()"
+  title="Dashboard"></app-header>
 
 <mat-sidenav-container class="dashboard">
   <mat-sidenav class="dashboard_sidebar" #sidenav mode="side" [(opened)]="sidebarOpened">
@@ -23,14 +26,15 @@
       <div class="dashboard_content_info_main">
         <app-payment *ngIf="!!(selectedPayment | async)"
                      [payment]="selectedPayment | async"
-                     (deletePayment)="onDeletePayment($event)"></app-payment>
-        </div>
-      <div>
-        <app-payment-list *ngIf="!!(payments | async)"
+                     (deletePayment)="onDeletePayment($event)">
+        </app-payment>
+      </div>
+      <app-payment-list class="dashboard_payment_list"
+                          *ngIf="!!(payments | async)"
                           [payments]="payments | async"
                           [currencyExchange]="currencyExchange | async"
-                          (selectPayment)="selectPayment($event)"></app-payment-list>
-        </div>
+                          (selectPayment)="selectPayment($event)">
+      </app-payment-list>
     </div>
 
   </mat-sidenav-content>

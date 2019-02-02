@@ -1,5 +1,5 @@
 import {createReducer} from '../utils';
-import {LoginUserFail, LoginUserSuccess, USER_LOGIN_FAIL, USER_LOGIN_SUCCESS} from '../actions/user.actions';
+import {LoginUserFail, LoginUserSuccess, USER_LOGIN_FAIL, USER_LOGIN_SUCCESS, USER_LOGOUT} from '../actions/user.actions';
 
 export const USER_TOKEN = 'userToken';
 
@@ -12,6 +12,7 @@ export interface IUserState {
 }
 
 const token = sessionStorage.getItem(USER_TOKEN) || null;
+
 
 const initialState = {
   userName: null,
@@ -31,8 +32,18 @@ const setUserData = (state: IUserState, {payload:  {userName = null, mail = null
   error: ''
 });
 
+const clearUserData = (): IUserState => {
+  // TODO it should be in EFFECTS, and the clearSucces and redirect
+  sessionStorage.setItem(USER_TOKEN, '');
+
+  return {
+    ...initialState
+  };
+};
+
 export const userReducer = createReducer({
   [USER_LOGIN_SUCCESS]: setUserData,
   [USER_LOGIN_FAIL]: setError,
+  [USER_LOGOUT]: clearUserData
 }, initialState);
 

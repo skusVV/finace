@@ -27,9 +27,10 @@ export class PaymentListComponent {
   }
 
   private exchangeCurrency(amount: number, type: string): number {
-    return amount
-    // return this.currencyExchange && type !== 'USD' && type !== 'EUR'
-    //   ? amount
-    //   : amount * this.currencyExchange.find(currency => currency.currencyName === type).rate;
+    // return amount;
+    // TODO need top decide promlem with not stable api of exchange
+    return this.currencyExchange && type !== 'USD' && type !== 'EUR'
+      ? amount
+      : amount * this.currencyExchange.find(currency => currency.currencyName === type).rate;
   }
 }

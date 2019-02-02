@@ -6,6 +6,7 @@ import {distinctUntilChanged, map, switchMap, filter} from 'rxjs/operators';
 import {ICategory, ICurrencyExchange, IPayment} from '../../store/reducers/data.reducer';
 import {DeleteCategory, DeletePayment, SelectCategory, SelectPayment} from '../../store/actions/data.actions';
 import {DialogAddNewCategory, DialogAddNewPayment} from '../../store/actions/dialog.actions';
+import {LogoutUser} from '../../store/actions/user.actions';
 
 @Component({
   selector: 'app-dashboard',
@@ -86,5 +87,9 @@ export class DashboardComponent implements OnInit {
 
   onDeleteCategory(id: string) {
     this.store.dispatch(new DeleteCategory(id));
+  }
+
+  logout() {
+    this.store.dispatch(new LogoutUser());
   }
 }
