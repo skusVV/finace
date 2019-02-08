@@ -4,23 +4,26 @@ import {StoreModule} from '@ngrx/store';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {EffectsModule } from '@ngrx/effects';
-import {UserEffect} from '../store/effects/user.effect';
+import {UserEffect} from '../store/effects/user/user.effect';
 import {metaReducers, reducerToken, reducerProvider} from '../store/reducers';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthGuard} from '../services/guards/auth.guard';
-import {RouterEffects} from '../store/effects/router.effect';
+import {RouterEffects} from '../store/effects/router/router.effect';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {SharedModule} from '../modules/shared.module';
-import {DataEffects} from '../store/effects/data.effects';
+// import {DataEffects} from '../store/effects/data.effects';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {TokenInterceptor} from '../services/interceptor';
 import {DashboardResolver} from '../services/dashboard.resolver';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {DialogEffects} from '../store/effects/dialog.effects';
+import {DialogEffects} from '../store/effects/dialog/dialog.effects';
 import {AddPaymentComponent} from '../components/addPayment/addPayment.component';
 import {AddCategoryComponent} from '../components/addCategory/addCategory.component';
+import {CategoriesEffects} from '../store/effects/categories/categories.effects';
+import {PaymentsEffects} from '../store/effects/payments/payments.effects';
+import {LoadEffects} from '../store/effects/load/load.effects';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,13 @@ import {AddCategoryComponent} from '../components/addCategory/addCategory.compon
     NgtUniversalModule,
     HttpClientModule,
     StoreModule.forRoot(reducerToken, { metaReducers }),
-    EffectsModule.forRoot([UserEffect, RouterEffects, DataEffects, DialogEffects]),
+    EffectsModule.forRoot([
+      UserEffect,
+      RouterEffects,
+      CategoriesEffects,
+      PaymentsEffects,
+      LoadEffects,
+      DialogEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     AppRoutingModule,
     MatSnackBarModule,

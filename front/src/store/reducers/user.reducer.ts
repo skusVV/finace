@@ -4,7 +4,6 @@ import {
   LoginUserSuccess,
   USER_LOGIN_FAIL,
   USER_LOGIN_SUCCESS,
-  USER_LOGOUT,
   USER_LOGOUT_SUCCESS
 } from '../actions/user.actions';
 

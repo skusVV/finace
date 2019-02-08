@@ -10,13 +10,13 @@ import {
   USER_LOGIN_SUCCESS,
   USER_REGISTER,
   RegisterUser, LogoutUser, USER_LOGOUT, LogoutUserSucess,
-} from '../actions/user.actions';
+} from '../../actions/user.actions';
 import {map, catchError, switchMap, tap} from 'rxjs/operators';
 import {of} from 'rxjs';
-import {RedirectTo} from '../actions/router.actions';
+import {RedirectTo} from '../../actions/router.actions';
 import {Store} from '@ngrx/store';
-import {IState} from '../reducers/index';
-import {USER_TOKEN} from '../reducers/user.reducer';
+import {IState} from '../../reducers/index';
+import {USER_TOKEN} from '../../reducers/user.reducer';
 
 @Injectable()
 export class UserEffect {

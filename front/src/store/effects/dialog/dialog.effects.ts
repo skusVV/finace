@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
-import {DIALOG_ADD_NEW_CATEGORY, DIALOG_ADD_NEW_PAYMENT, DialogAddNewCategory, DialogAddNewPayment} from '../actions/dialog.actions';
+import {DIALOG_ADD_NEW_CATEGORY, DIALOG_ADD_NEW_PAYMENT, DialogAddNewCategory, DialogAddNewPayment} from '../../actions/dialog.actions';
 import {select, Store} from '@ngrx/store';
-import {dataStateSelector, IState} from '../reducers';
+import {dataStateSelector, IState} from '../../reducers/index';
 import {MatDialog} from '@angular/material';
-import {AddCategoryComponent} from '../../components/addCategory/addCategory.component';
-import {AddCategory, PaymentToSelectedCategory} from '../actions/data.actions';
-import {currencies} from '../../constants';
-import {AddPaymentComponent} from '../../components/addPayment/addPayment.component';
+import {AddCategoryComponent} from '../../../components/addCategory/addCategory.component';
+import {AddCategory, PaymentToSelectedCategory} from '../../actions/data.actions';
+import {currencies} from '../../../constants';
+import {AddPaymentComponent} from '../../../components/addPayment/addPayment.component';
 import {tap, take, switchMap, distinctUntilChanged, filter, map} from 'rxjs/operators';
 
 @Injectable()
