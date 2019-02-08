@@ -6,6 +6,7 @@ export const USER_LOGIN_FAIL = '[USER] Login Fail';
 export const USER_REGISTER = '[USER] Register';
 export const USER_SET = '[USER] SET';
 export const USER_LOGOUT = '[USER] Logout';
+export const USER_LOGOUT_SUCCESS = '[USER] Logout Success';
 
 export class LoginUser implements Action {
   readonly type = USER_LOGIN;
@@ -45,5 +46,8 @@ export class LoginUserFail implements Action {
 
 export class LogoutUser implements Action {
   readonly type = USER_LOGOUT;
+}
 
+export class LogoutUserSucess implements Action {
+  readonly type = USER_LOGOUT_SUCCESS;
 }

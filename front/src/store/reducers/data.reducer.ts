@@ -11,6 +11,7 @@ import {
   SELECT_CATEGORY, SELECT_PAYMENT,
   SelectCategory, SelectPayment
 } from '../actions/data.actions';
+import {USER_LOGOUT_SUCCESS} from '../actions/user.actions';
 
 export interface IPayment {
   _id: string;
@@ -102,6 +103,10 @@ const deleteCategory = (state: IDataState, {payload:  {categoryId}}: DeleteCateg
   selectedCategory: null
 });
 
+const clearData = (): IDataState => ({
+  ...initialState
+});
+
 export const dataReducer = createReducer({
   [LOAD_CATEGORIES_SUCCESS]: setCategories,
   [ADD_CATEGORY_SUCCESS]: addCategory,
@@ -111,5 +116,6 @@ export const dataReducer = createReducer({
   [LOAD_CURRENCY_EXCHANGE_SUCCESS]: setCurrencyExchange,
   [SELECT_PAYMENT]: selectPayment,
   [DELETE_PAYMENT_SUCCESS]: deletePayment,
-  [DELETE_CATEGORY_SUCCESS]: deleteCategory
+  [DELETE_CATEGORY_SUCCESS]: deleteCategory,
+  [USER_LOGOUT_SUCCESS]: clearData
 }, initialState);

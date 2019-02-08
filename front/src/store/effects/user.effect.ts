@@ -9,7 +9,7 @@ import {
   LoginUserSuccess,
   USER_LOGIN_SUCCESS,
   USER_REGISTER,
-  RegisterUser,
+  RegisterUser, LogoutUser, USER_LOGOUT, LogoutUserSucess,
 } from '../actions/user.actions';
 import {map, catchError, switchMap, tap} from 'rxjs/operators';
 import {of} from 'rxjs';
@@ -21,6 +21,7 @@ import {USER_TOKEN} from '../reducers/user.reducer';
 @Injectable()
 export class UserEffect {
   @Effect() loginUserStream: Observable<LoginUserSuccess | LoginUserFail>;
+  @Effect() logoutUserStream: Observable<any>;
   @Effect({dispatch: false}) registerUserStream;
   @Effect({dispatch: false}) loginUserSuccessStream;
 
@@ -54,6 +55,16 @@ export class UserEffect {
         sessionStorage.setItem(USER_TOKEN, token);
         this.store.dispatch(new RedirectTo(['/dashboard']));
       }),
+    );
+
+    this.logoutUserStream = actionsStream.pipe(
+      ofType<LogoutUser>(USER_LOGOUT),
+      switchMap(() => {
+          sessionStorage.setItem(USER_TOKEN, '');
+          this.store.dispatch(new RedirectTo(['/login']));
+
+          return of(new LogoutUserSucess());
+      })
     );
   }
 }
