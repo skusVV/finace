@@ -24,7 +24,7 @@ export class PaymentsController {
 
     query.exec(function (err, payments) {
       if (err) return next(err);
-      res.send(payments);
+      res.send(payments.filter(payment => payment.userId === userId));
     });
   }
 

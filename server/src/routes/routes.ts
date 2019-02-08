@@ -21,7 +21,6 @@ export class Routes {
     app.route('/api/v1/payments/:id')
       .delete(this.paymentsController.deletePayment);
 
-
     app.route('/api/v1/categories')
       .get(this.categoriesController.getAllCategories)
       .post(this.categoriesController.addCategory);

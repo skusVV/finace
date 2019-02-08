@@ -24,7 +24,7 @@ export class CategoriesController {
 
     query.exec(function (err, categories) {
       if (err) return next(err);
-      res.send(categories);
+      res.send(categories.filter(category => category.userId === userId));
     });
   }
 

@@ -12,7 +12,8 @@
     "build:browser:prod": "ng build --prod --stats-json",
     "build:prod": "npm run build:server:prod && npm run build:browser:prod && npm run analyze",
     "server": "node local.js",
-    "analyze": "webpack-bundle-analyzer dist/browser/stats.json"
+    "analyze": "webpack-bundle-analyzer dist/browser/stats.json",
+    "x": "node node_modules/protractor/bin/protractor e2e/protractor.conf.js"
   },
   "private": true,
   "dependencies": {
