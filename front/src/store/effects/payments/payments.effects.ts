@@ -1,23 +1,27 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
-import {switchMap, map} from 'rxjs/operators';
+import {switchMap, map, take} from 'rxjs/operators';
 import {
   PaymentToSelectedCategory,
   PAYMENT_TO_SELECTED_CATEGORY,
   PaymentToSelectedCategorySuccess,
-  DeletePayment,
-  DELETE_PAYMENT,
   DeletePaymentSuccess,
+  DELETE_PAYMENT,
+  DeletePayment,
+  DeletePaymentCancel,
 } from '../../actions/data.actions';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
+import {ConfirmComponent} from '../../../components/confirm/confirm.component';
+import {MatDialog} from '@angular/material';
 
 @Injectable()
 export class PaymentsEffects {
   @Effect() addPaymentStream: Observable<PaymentToSelectedCategorySuccess>;
-  @Effect() deletePaymentStream: Observable<DeletePaymentSuccess>;
+  @Effect() deletePaymentStream: Observable<DeletePaymentSuccess | DeletePaymentCancel>;
 
   constructor(private actionsStream: Actions,
+              public dialog: MatDialog,
               private http: HttpClient) {
     this.addPaymentStream = actionsStream.pipe(
       ofType<PaymentToSelectedCategory>(PAYMENT_TO_SELECTED_CATEGORY),
@@ -30,11 +34,29 @@ export class PaymentsEffects {
 
     this.deletePaymentStream = actionsStream.pipe(
       ofType<DeletePayment>(DELETE_PAYMENT),
-      switchMap(({payload: {paymentId}}) =>
-        this.http.delete(`/api/v1/payments/${paymentId}`),
-      ),
-      // TODO add catch Error handler
-      map((data: any) => new DeletePaymentSuccess(data.id)),
+      switchMap(({payload: {paymentId}}) =>{
+        const dialogRef = this.dialog.open(ConfirmComponent, {
+          width: '300px',
+          data: {
+            title: 'Are you sure?',
+            positiveButtonText: 'Ok',
+            negativeButtonText: 'Cancel',
+          }
+        });
+
+        return dialogRef.afterClosed()
+          .pipe(
+            take(1),
+            switchMap(data => {
+              return data
+                ? this.http.delete(`/api/v1/payments/${paymentId}`).pipe(
+                  map((data: any) => new DeletePaymentSuccess(data.id)),
+                  // TODO add catch Error handler
+                )
+                : of(new DeletePaymentCancel())
+            })
+          );
+      }),
     );
   }
 }

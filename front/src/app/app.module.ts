@@ -13,7 +13,6 @@ import {AuthGuard} from '../services/guards/auth.guard';
 import {RouterEffects} from '../store/effects/router/router.effect';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {SharedModule} from '../modules/shared.module';
-// import {DataEffects} from '../store/effects/data.effects';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {TokenInterceptor} from '../services/interceptor';
 import {DashboardResolver} from '../services/dashboard.resolver';
@@ -24,12 +23,14 @@ import {AddCategoryComponent} from '../components/addCategory/addCategory.compon
 import {CategoriesEffects} from '../store/effects/categories/categories.effects';
 import {PaymentsEffects} from '../store/effects/payments/payments.effects';
 import {LoadEffects} from '../store/effects/load/load.effects';
+import {ConfirmComponent} from '../components/confirm/confirm.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddCategoryComponent,
-    AddPaymentComponent
+    AddPaymentComponent,
+    ConfirmComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -60,7 +61,8 @@ import {LoadEffects} from '../store/effects/load/load.effects';
   ],
   entryComponents: [
     AddCategoryComponent,
-    AddPaymentComponent
+    AddPaymentComponent,
+    ConfirmComponent
   ]
 })
 export class AppModule { }

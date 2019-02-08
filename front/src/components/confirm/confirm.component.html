@@ -1,5 +1,5 @@
-<div class="confirm">
-  <h1 class="confirm_title">{{title}}</h1>
-  <button class="confirm_button-ok" (click)="handlePositiveButton()">{{positiveButtonText}}</button>
-  <button class="confirm_button-cancel" (click)="handleNegativeButton()">{{negativeButtonText}}</button>
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">{{data.negativeButtonText}}</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>{{data.positiveButtonText}}</button>
 </div>

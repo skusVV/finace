@@ -8,7 +8,7 @@ import {AddCategoryComponent} from '../../../components/addCategory/addCategory.
 import {AddCategory, PaymentToSelectedCategory} from '../../actions/data.actions';
 import {currencies} from '../../../constants';
 import {AddPaymentComponent} from '../../../components/addPayment/addPayment.component';
-import {tap, take, switchMap, distinctUntilChanged, filter, map} from 'rxjs/operators';
+import {take, switchMap, distinctUntilChanged, filter, map} from 'rxjs/operators';
 
 @Injectable()
 export class DialogEffects {

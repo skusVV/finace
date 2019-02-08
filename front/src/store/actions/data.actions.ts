@@ -14,8 +14,10 @@ export const ADD_CATEGORY_SUCCESS = '[DATA] Add Category Success';
 export const SELECT_CATEGORY = '[DATA] Select Category';
 export const SELECT_PAYMENT = '[DATA] Select Payment';
 export const DELETE_PAYMENT = '[DATA] Delete Payment';
+export const DELETE_PAYMENT_CANCEL = '[DATA] Delete Payment Cancel';
 export const DELETE_PAYMENT_SUCCESS = '[DATA] Delete Payment Success';
 export const DELETE_CATEGORY = '[DATA] Delete Category';
+export const DELETE_CATEGORY_CANCEL = '[DATA] Delete Category Cancel';
 export const DELETE_CATEGORY_SUCCESS = '[DATA] Delete Category Success';
 export const PAYMENT_TO_SELECTED_CATEGORY = '[DATA] Payment To Selected Category';
 export const PAYMENT_TO_SELECTED_CATEGORY_SUCCESS = '[DATA] Payment To Selected Category Success';
@@ -94,6 +96,10 @@ export class DeleteCategory implements Action {
   }
 }
 
+export class DeleteCategoryCancel implements Action {
+  readonly type = DELETE_CATEGORY_CANCEL;
+}
+
 export class DeleteCategorySuccess implements Action {
   readonly type = DELETE_CATEGORY_SUCCESS;
   readonly payload: {categoryId: string};
@@ -110,6 +116,10 @@ export class DeletePayment implements Action {
   constructor(paymentId) {
     this.payload = {paymentId};
   }
+}
+
+export class DeletePaymentCancel implements Action {
+  readonly type = DELETE_PAYMENT_CANCEL;
 }
 
 export class DeletePaymentSuccess implements Action {

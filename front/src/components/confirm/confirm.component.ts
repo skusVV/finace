@@ -1,7 +1,12 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Component, Inject} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {AddCategoryComponent} from '../addCategory/addCategory.component';
 
-const POSITIVE_BUTTON_TEXT = 'Ok';
-const NEGATIVE_BUTTON_TEXT = 'Cancel';
+interface IConfirmDialog {
+  title: string;
+  positiveButtonText: string;
+  negativeButtonText: string;
+}
 
 @Component({
   selector: 'app-confirm',
@@ -9,17 +14,11 @@ const NEGATIVE_BUTTON_TEXT = 'Cancel';
   styleUrls: ['./confirm.component.less']
 })
 export class ConfirmComponent {
-  @Input() title: string;
-  @Output() confirmed = new EventEmitter<boolean>();
 
-  positiveButtonText = POSITIVE_BUTTON_TEXT;
-  negativeButtonText = NEGATIVE_BUTTON_TEXT;
+  constructor(public dialogRef: MatDialogRef<AddCategoryComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: IConfirmDialog) {}
 
-  handlePositiveButton() {
-    this.confirmed.emit(true);
-  }
-
-  handleNegativeButton() {
-    this.confirmed.emit(false);
+  onNoClick() {
+    this.dialogRef.close();
   }
 }
