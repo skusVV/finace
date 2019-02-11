@@ -1,5 +1,11 @@
 @import '../../styles/constants';
 
+.mat-drawer-inner-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .dashboard {
   height: calc(100vh - @main_row_height);
 
@@ -13,8 +19,6 @@
   }
 
   &_content {
-    //display: flex;
-    //justify-content: space-between;
     &_controls {
       display: flex;
       align-items: center;

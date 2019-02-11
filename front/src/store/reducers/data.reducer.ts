@@ -1,16 +1,28 @@
 import {createReducer} from '../utils';
 import {
+  CategoriesLoadSuccess,
+  LOAD_CATEGORIES_SUCCESS,
+  LOAD_CURRENCY_EXCHANGE_SUCCESS,
+  LOAD_PAYMENTS_SUCCESS,
+  LoadCurrencyExchangeSuccess,
+  PaymentsLoadSuccess,
+} from '../actions/load.actions';
+import {
   ADD_CATEGORY_SUCCESS,
   AddCategorySuccess,
-  CategoriesLoadSuccess, DELETE_CATEGORY_SUCCESS, DELETE_PAYMENT_SUCCESS, DeleteCategorySuccess, DeletePaymentSuccess,
-
-  LOAD_CATEGORIES_SUCCESS, LOAD_CURRENCY_EXCHANGE_SUCCESS,
-  LOAD_PAYMENTS_SUCCESS, LoadCurrencyExchangeSuccess,
-  PAYMENT_TO_SELECTED_CATEGORY_SUCCESS, PaymentsLoadSuccess,
+  DELETE_CATEGORY_SUCCESS,
+  DeleteCategorySuccess,
+  SELECT_CATEGORY,
+  SelectCategory,
+} from '../actions/category.actions';
+import {
+  DELETE_PAYMENT_SUCCESS,
+  DeletePaymentSuccess,
+  PAYMENT_TO_SELECTED_CATEGORY_SUCCESS,
   PaymentToSelectedCategorySuccess,
-  SELECT_CATEGORY, SELECT_PAYMENT,
-  SelectCategory, SelectPayment
-} from '../actions/data.actions';
+  SELECT_PAYMENT,
+  SelectPayment
+} from '../actions/payment.actions';
 import {USER_LOGOUT_SUCCESS} from '../actions/user.actions';
 
 export interface IPayment {

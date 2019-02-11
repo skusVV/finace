@@ -36,4 +36,14 @@ export class PaymentsController {
       res.send({id: req.params.id});
     });
   }
+
+
+  async updatePayment(req, res, next) {
+    // const query = PaymentsController.Payment.remove({'_id': req.params.id});
+    //
+    // query.exec(function (err, payments) {
+    //   if (err) return next(err);
+    //   res.send({id: req.params.id});
+    // });
+  }
 }

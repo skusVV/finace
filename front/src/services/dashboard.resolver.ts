@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Store, select} from '@ngrx/store';
 import {IState, dataStateSelector} from '../store/reducers';
-import {LoadCategories, LoadPayments, LoadCurrencyExchange} from '../store/actions/data.actions';
+import {LoadCategories, LoadPayments, LoadCurrencyExchange} from '../store/actions/load.actions';
 import {take} from 'rxjs/operators';
 import {ICategory} from '../store/reducers/data.reducer';
 

@@ -8,8 +8,8 @@ import {
   DeletePaymentSuccess,
   DELETE_PAYMENT,
   DeletePayment,
-  DeletePaymentCancel,
-} from '../../actions/data.actions';
+  DeletePaymentCancel, UpdatePayment, UPDATE_PAYMENT, UpdatePaymentSucess,
+} from '../../actions/payment.actions';
 import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {ConfirmComponent} from '../../../components/confirm/confirm.component';
@@ -18,6 +18,7 @@ import {MatDialog} from '@angular/material';
 @Injectable()
 export class PaymentsEffects {
   @Effect() addPaymentStream: Observable<PaymentToSelectedCategorySuccess>;
+  @Effect() updatePaymentStream: Observable<any>;
   @Effect() deletePaymentStream: Observable<DeletePaymentSuccess | DeletePaymentCancel>;
 
   constructor(private actionsStream: Actions,
@@ -58,5 +59,14 @@ export class PaymentsEffects {
           );
       }),
     );
+
+    this.updatePaymentStream = actionsStream.pipe(
+      ofType<UpdatePayment>(UPDATE_PAYMENT),
+      switchMap(({payload}) =>
+        this.http.put(`/api/v1/payments/${payload._id}`, payload),
+      ),
+      // TODO add catch Error handler
+      map(payment => new UpdatePaymentSucess(payment)),
+    )
   }
 }

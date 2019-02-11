@@ -7,6 +7,7 @@ import {HeaderComponent} from './header/header.component';
 import {CategoriesListComponent} from './categoriesList/categoriesList.component';
 import {PaymentListComponent} from './paymentList/paymentList.component';
 import {PaymentComponent} from './payment/payment.component';
+import {ToggleFieldComponent} from '../../components/toggleField/toggleField.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import {PaymentComponent} from './payment/payment.component';
     CategoriesListComponent,
     PaymentListComponent,
     PaymentComponent,
+    ToggleFieldComponent,
   ],
   imports: [
     SharedModule,

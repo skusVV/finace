@@ -9,5 +9,4 @@ export class HeaderComponent {
   @Input() userName: string;
   @Input() title: string;
   @Output() logout = new EventEmitter<void>();
-
 }

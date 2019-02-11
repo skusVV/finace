@@ -21,7 +21,7 @@ import {USER_TOKEN} from '../../reducers/user.reducer';
 @Injectable()
 export class UserEffect {
   @Effect() loginUserStream: Observable<LoginUserSuccess | LoginUserFail>;
-  @Effect() logoutUserStream: Observable<any>;
+  @Effect() logoutUserStream: Observable<LogoutUserSucess>;
   @Effect({dispatch: false}) registerUserStream;
   @Effect({dispatch: false}) loginUserSuccessStream;
 

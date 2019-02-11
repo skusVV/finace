@@ -4,13 +4,21 @@
   title="Dashboard"></app-header>
 
 <mat-sidenav-container class="dashboard">
-  <mat-sidenav class="dashboard_sidebar" #sidenav mode="side" [(opened)]="sidebarOpened">
-    <app-categories-list
-      [categories]="categories | async"
-      (deleteCategory)="onDeleteCategory($event)"
-      [selectedCategory]="selectedCategory | async"
-      (selectCategory)="selectCategory($event)"
-      (addNewCategory)="addNewCategory()"></app-categories-list>
+  <mat-sidenav class="dashboard_sidebar"
+               #sidenav mode="side"
+               [(opened)]="sidebarOpened">
+    <div class="mat-drawer-inner-container">
+      <app-categories-list
+        [categories]="categories | async"
+        (deleteCategory)="onDeleteCategory($event)"
+        [selectedCategory]="selectedCategory | async"
+        (selectCategory)="selectCategory($event)"
+        (addNewCategory)="addNewCategory()"></app-categories-list>
+      <!--TODO made common payment-->
+      <!--<button mat-flat-button-->
+              <!--color="primary"-->
+              <!--(click)="addNewPayment()">Distribute payment between categories</button>-->
+    </div>
   </mat-sidenav>
   <mat-sidenav-content class="dashboard_content">
     <div class="dashboard_content_controls">
@@ -18,7 +26,8 @@
         <mat-icon *ngIf="sidebarOpened" matTooltip="Hide sidebar">arrow_back</mat-icon>
         <mat-icon *ngIf="!sidebarOpened" matTooltip="Show sidebar">arrow_forward</mat-icon>
       </button>
-      <button mat-button
+      <button mat-flat-button
+              color="primary"
               *ngIf="!!(selectedCategory | async)"
               (click)="addNewPayment()">Add payment</button>
     </div>
@@ -26,6 +35,7 @@
       <div class="dashboard_content_info_main">
         <app-payment *ngIf="!!(selectedPayment | async)"
                      [payment]="selectedPayment | async"
+                     (updatePayment)="onUpdatePayment($event)"
                      (deletePayment)="onDeletePayment($event)">
         </app-payment>
       </div>
@@ -36,6 +46,5 @@
                           (selectPayment)="selectPayment($event)">
       </app-payment-list>
     </div>
-
   </mat-sidenav-content>
 </mat-sidenav-container>

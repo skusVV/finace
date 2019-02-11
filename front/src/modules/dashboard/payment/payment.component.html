@@ -5,7 +5,9 @@
   </div>
   <div class="payment_info">
     <div class="payment_info_main">
-      <div>{{payment.description}}</div>
+      <app-toggle-field [data]="payment.description"
+                        (onChange)="onDescriptionChange($event)"
+                        placeholder="Description"></app-toggle-field>
       <div>Check type please: cash, bank-debit, papers</div>
     </div>
     <div class="payment_info_bar">

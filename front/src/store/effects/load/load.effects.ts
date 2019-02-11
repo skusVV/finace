@@ -11,7 +11,7 @@ import {
   LoadCurrencyExchange,
   LOAD_CURRENCY_EXCHANGE,
   LoadCurrencyExchangeSuccess,
-} from '../../actions/data.actions';
+} from '../../actions/load.actions';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 

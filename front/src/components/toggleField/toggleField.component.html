@@ -1,0 +1,11 @@
+<div class="toggle">
+  <p *ngIf="!editable"
+     class="toggle_inactive"
+     (click)="toggleField()">{{data}}</p>
+  <mat-form-field *ngIf="!!editable" class="toggle_active">
+    <textarea matInput
+              [placeholder]="placeholder"
+              (blur)="change($event)"
+              [value]="data"></textarea>
+  </mat-form-field>
+</div>

@@ -9,8 +9,18 @@ import {IPayment} from '../../../store/reducers/data.reducer';
 export class PaymentComponent {
   @Input() payment: IPayment;
   @Output() deletePayment = new EventEmitter<string>();
+  @Output() updatePayment = new EventEmitter<IPayment>();
 
   onDelete() {
     this.deletePayment.emit(this.payment._id);
+  }
+
+  onDescriptionChange(description: string){
+    if (description !== this.payment.description) {
+      this.updatePayment.emit({
+        ...this.payment,
+        description
+      })
+    }
   }
 }

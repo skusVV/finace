@@ -4,7 +4,8 @@ import {Store, select} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {distinctUntilChanged, map, switchMap, filter} from 'rxjs/operators';
 import {ICategory, ICurrencyExchange, IPayment} from '../../store/reducers/data.reducer';
-import {DeleteCategory, DeletePayment, SelectCategory, SelectPayment} from '../../store/actions/data.actions';
+import {DeleteCategory, SelectCategory} from '../../store/actions/category.actions';
+import {DeletePayment, SelectPayment, UpdatePayment} from '../../store/actions/payment.actions';
 import {DialogAddNewCategory, DialogAddNewPayment} from '../../store/actions/dialog.actions';
 import {LogoutUser} from '../../store/actions/user.actions';
 
@@ -76,6 +77,9 @@ export class DashboardComponent implements OnInit {
     this.store.dispatch(new DeletePayment(id));
   }
 
+  onUpdatePayment(payment: IPayment) {
+    this.store.dispatch(new UpdatePayment(payment));
+  }
 
   selectCategory(id: string) {
     this.store.dispatch(new SelectCategory(id));

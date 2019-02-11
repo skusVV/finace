@@ -8,8 +8,9 @@ import {
   AddCategorySuccess,
   DeleteCategorySuccess,
   DELETE_CATEGORY,
-  DeleteCategory, DeleteCategoryCancel,
-} from '../../actions/data.actions';
+  DeleteCategory,
+  DeleteCategoryCancel,
+} from '../../actions/category.actions';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {MatDialog} from '@angular/material';
