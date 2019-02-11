@@ -39,11 +39,11 @@ export class PaymentsController {
 
 
   async updatePayment(req, res, next) {
-    // const query = PaymentsController.Payment.remove({'_id': req.params.id});
-    //
-    // query.exec(function (err, payments) {
-    //   if (err) return next(err);
-    //   res.send({id: req.params.id});
-    // });
+    const query = PaymentsController.Payment.update({'_id': req.params.id}, { $set: { ...req.body} });
+
+    query.exec(function (err) {
+      if (err) return next(err);
+      res.send(req.body);
+    });
   }
 }

@@ -21,7 +21,7 @@ import {
   PAYMENT_TO_SELECTED_CATEGORY_SUCCESS,
   PaymentToSelectedCategorySuccess,
   SELECT_PAYMENT,
-  SelectPayment
+  SelectPayment, UPDATE_PAYMENT_SUCCESS, UpdatePaymentSucess
 } from '../actions/payment.actions';
 import {USER_LOGOUT_SUCCESS} from '../actions/user.actions';
 
@@ -109,6 +109,13 @@ const deletePayment = (state: IDataState, {payload:  {paymentId}}: DeletePayment
   selectedPayment: null
 });
 
+const updatePayment = (state: IDataState, {payload}: UpdatePaymentSucess): IDataState => ({
+  ...state,
+  payments: state.payments.map(payment => payment._id === payload._id ? payload : payment),
+  selectedPayment: payload
+});
+
+
 const deleteCategory = (state: IDataState, {payload:  {categoryId}}: DeleteCategorySuccess): IDataState => ({
   ...state,
   categories: state.categories.filter(({_id})=> _id !== categoryId),
@@ -129,5 +136,6 @@ export const dataReducer = createReducer({
   [SELECT_PAYMENT]: selectPayment,
   [DELETE_PAYMENT_SUCCESS]: deletePayment,
   [DELETE_CATEGORY_SUCCESS]: deleteCategory,
-  [USER_LOGOUT_SUCCESS]: clearData
+  [USER_LOGOUT_SUCCESS]: clearData,
+  [UPDATE_PAYMENT_SUCCESS]: updatePayment
 }, initialState);
