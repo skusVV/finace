@@ -22,10 +22,16 @@
   </mat-sidenav>
   <mat-sidenav-content class="dashboard_content">
     <div class="dashboard_content_controls">
+      <div>
       <button mat-button (click)="toggleSidebar()">
         <mat-icon *ngIf="sidebarOpened" matTooltip="Hide sidebar">arrow_back</mat-icon>
         <mat-icon *ngIf="!sidebarOpened" matTooltip="Show sidebar">arrow_forward</mat-icon>
       </button>
+        <button mat-flat-button
+                color="primary"
+                *ngIf="!!(selectedCategory | async)"
+                (click)="visualizeCategory()">Visualize category</button>
+      </div>
       <button mat-flat-button
               color="primary"
               *ngIf="!!(selectedCategory | async)"

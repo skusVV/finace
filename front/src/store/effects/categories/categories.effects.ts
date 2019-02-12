@@ -9,20 +9,25 @@ import {
   DeleteCategorySuccess,
   DELETE_CATEGORY,
   DeleteCategory,
-  DeleteCategoryCancel,
+  DeleteCategoryCancel, OPEN_VISUALIZE_CATEGORY, OpenVisualizeCategory,
 } from '../../actions/category.actions';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {MatDialog} from '@angular/material';
 import {ConfirmComponent} from '../../../components/confirm/confirm.component';
+import {select, Store} from '@ngrx/store';
+import {dataStateSelector, IState} from '../../reducers';
+import {CategoryVisualizeComponent} from '../../../components/categoryVisualize/categoryVisualize.component';
 
 @Injectable()
 export class CategoriesEffects {
   @Effect() addCategoryStream: Observable<AddCategorySuccess>;
   @Effect() deleteCategoryStream: Observable<DeleteCategorySuccess | DeleteCategoryCancel>;
+  @Effect({dispatch: false}) openVisualizeCategoryStream: Observable<any>;
 
   constructor(private actionsStream: Actions,
               public dialog: MatDialog,
+              private store: Store<IState>,
               private http: HttpClient) {
     this.addCategoryStream = actionsStream.pipe(
       ofType<AddCategory>(ADD_CATEGORY),
@@ -58,6 +63,32 @@ export class CategoriesEffects {
             })
           );
       }),
+    );
+
+    this.openVisualizeCategoryStream = actionsStream.pipe(
+      ofType<OpenVisualizeCategory>(OPEN_VISUALIZE_CATEGORY),
+      switchMap(() => this.store.pipe(
+        select(dataStateSelector),
+        map(({payments, selectedCategory}) => {
+          return {
+            title: selectedCategory.name,
+            payments: payments.filter(payment => payment.categoryId === selectedCategory._id),
+          }
+        }),
+        take(1),
+      )),
+      switchMap(({title, payments}) => {
+        const dialogRef = this.dialog.open(CategoryVisualizeComponent, {
+          width: '100vw',
+          height: '95vh',
+          data: {
+            title,
+            payments,
+          }
+        });
+
+        return dialogRef.afterClosed();
+      })
     );
   }
 }

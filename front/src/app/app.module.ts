@@ -24,6 +24,7 @@ import {CategoriesEffects} from '../store/effects/categories/categories.effects'
 import {PaymentsEffects} from '../store/effects/payments/payments.effects';
 import {LoadEffects} from '../store/effects/load/load.effects';
 import {ConfirmComponent} from '../components/confirm/confirm.component';
+import {CategoryVisualizeComponent} from '../components/categoryVisualize/categoryVisualize.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {ConfirmComponent} from '../components/confirm/confirm.component';
     AddCategoryComponent,
     AddPaymentComponent,
     ConfirmComponent,
+    CategoryVisualizeComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -62,7 +64,8 @@ import {ConfirmComponent} from '../components/confirm/confirm.component';
   entryComponents: [
     AddCategoryComponent,
     AddPaymentComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    CategoryVisualizeComponent,
   ]
 })
 export class AppModule { }

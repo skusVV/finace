@@ -1,12 +1,13 @@
 import {Action} from '@ngrx/store';
 import {ICategory} from '../reducers/data.reducer';
 
-export const ADD_CATEGORY = '[DATA] Add Category';
-export const ADD_CATEGORY_SUCCESS = '[DATA] Add Category Success';
-export const SELECT_CATEGORY = '[DATA] Select Category';
-export const DELETE_CATEGORY = '[DATA] Delete Category';
-export const DELETE_CATEGORY_CANCEL = '[DATA] Delete Category Cancel';
-export const DELETE_CATEGORY_SUCCESS = '[DATA] Delete Category Success';
+export const ADD_CATEGORY = '[CATEGORY] Add Category';
+export const ADD_CATEGORY_SUCCESS = '[CATEGORY] Add Category Success';
+export const SELECT_CATEGORY = '[CATEGORY] Select Category';
+export const DELETE_CATEGORY = '[CATEGORY] Delete Category';
+export const DELETE_CATEGORY_CANCEL = '[CATEGORY] Delete Category Cancel';
+export const DELETE_CATEGORY_SUCCESS = '[CATEGORY] Delete Category Success';
+export const OPEN_VISUALIZE_CATEGORY = '[CATEGORY] Open Visualize Category';
 
 export class AddCategory implements Action {
   readonly type = ADD_CATEGORY;
@@ -55,4 +56,8 @@ export class DeleteCategorySuccess implements Action {
   constructor(categoryId) {
     this.payload = {categoryId};
   }
+}
+
+export class OpenVisualizeCategory implements Action {
+  readonly type = OPEN_VISUALIZE_CATEGORY;
 }

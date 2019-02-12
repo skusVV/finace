@@ -4,7 +4,7 @@ import {Store, select} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {distinctUntilChanged, map, switchMap, filter} from 'rxjs/operators';
 import {ICategory, ICurrencyExchange, IPayment} from '../../store/reducers/data.reducer';
-import {DeleteCategory, SelectCategory} from '../../store/actions/category.actions';
+import {DeleteCategory, OpenVisualizeCategory, SelectCategory} from '../../store/actions/category.actions';
 import {DeletePayment, SelectPayment, UpdatePayment} from '../../store/actions/payment.actions';
 import {DialogAddNewCategory, DialogAddNewPayment} from '../../store/actions/dialog.actions';
 import {LogoutUser} from '../../store/actions/user.actions';
@@ -91,6 +91,10 @@ export class DashboardComponent implements OnInit {
 
   onDeleteCategory(id: string) {
     this.store.dispatch(new DeleteCategory(id));
+  }
+
+  visualizeCategory() {
+    this.store.dispatch(new OpenVisualizeCategory());
   }
 
   logout() {
