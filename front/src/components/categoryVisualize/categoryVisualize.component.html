@@ -5,11 +5,16 @@
     <span class="visualize_header_close" (click)="close()">&#10005;</span>
   </header>
   <nav class="visualize_tabs">
-    <!--Should to be circe diagram-->
     <span (click)="setActiveTab('byCurrency')">By Currency</span>
-    <!--range for each day with 3 different color in Column-->
     <span (click)="setActiveTab('byDate')">By Date</span>
   </nav>
-  <div class="visualize_currency" *ngIf="isByCurrencyActive">currency</div>
-  <div class="visualize_data" *ngIf="isByDateActive">data</div>
+  <div  *ngIf="isByCurrencyActive" >
+    das
+    <app-pie-chart class="visualize_currency-pie" [data]="pieData"></app-pie-chart>
+  </div>
+
+
+  <div class="visualize_data" *ngIf="isByDateActive">
+    das
+  </div>
 </section>

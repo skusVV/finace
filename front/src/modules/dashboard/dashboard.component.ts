@@ -18,7 +18,6 @@ export class DashboardComponent implements OnInit {
   userName: Observable<string>;
   sidebarOpened = true;
   categories: Observable<ICategory[]>;
-  currencyExchange: Observable<ICurrencyExchange[]>;
   payments: Observable<IPayment[]>;
   selectedCategory: Observable<ICategory>;
   selectedPayment: Observable<IPayment>;
@@ -38,10 +37,6 @@ export class DashboardComponent implements OnInit {
 
     this.categories = dataStateStream.pipe(
       map(({categories}) => categories)
-    );
-
-    this.currencyExchange = dataStateStream.pipe(
-      map(({currencyExchange}) => currencyExchange)
     );
 
     this.selectedCategory = dataStateStream.pipe(

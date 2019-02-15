@@ -25,6 +25,8 @@ import {PaymentsEffects} from '../store/effects/payments/payments.effects';
 import {LoadEffects} from '../store/effects/load/load.effects';
 import {ConfirmComponent} from '../components/confirm/confirm.component';
 import {CategoryVisualizeComponent} from '../components/categoryVisualize/categoryVisualize.component';
+import {CurrencyService} from '../services/currency.service';
+import {PieChartComponent} from '../components/pieChart/pieChart.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import {CategoryVisualizeComponent} from '../components/categoryVisualize/catego
     AddPaymentComponent,
     ConfirmComponent,
     CategoryVisualizeComponent,
+    PieChartComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -55,6 +58,7 @@ import {CategoryVisualizeComponent} from '../components/categoryVisualize/catego
     reducerProvider,
     AuthGuard,
     DashboardResolver,
+    CurrencyService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

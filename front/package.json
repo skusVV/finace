@@ -35,6 +35,7 @@
     "@ngrx/store-devtools": "^7.0.0",
     "@nguniversal/express-engine": "^6.1.0",
     "@nguniversal/module-map-ngfactory-loader": "^6.1.0",
+    "chart.js": "^2.7.3",
     "core-js": "^2.5.4",
     "cors": "~2.8.4",
     "moment": "^2.23.0",

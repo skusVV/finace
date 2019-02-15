@@ -48,7 +48,6 @@
       <app-payment-list class="dashboard_payment_list"
                           *ngIf="!!(payments | async)"
                           [payments]="payments | async"
-                          [currencyExchange]="currencyExchange | async"
                           (selectPayment)="selectPayment($event)">
       </app-payment-list>
     </div>
