@@ -1,40 +1,59 @@
 @import '../../../styles/constants';
 
-.categories{
+.categories {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 
-  &_add{
+  .preview {
     display: flex;
-    justify-content: flex-end;
-    background: @main_color_opposite;
-    height: @main_row_height;
-    border-bottom: 1px solid @color_shadow;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    &_icon {
-      cursor: pointer;
+    width: 350px;
+    height: 350px;
+    margin: @general_margin;
+    padding: @general_padding;
+    background: @color_shadow;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 10px 10px 50px rgba(0,0,0,0.5);
+    }
+
+    &_header {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    &_name {
+      font-size: @font_size_large;
+      font-weight: @text_bold;
+    }
+
+    &_description {
+      font-size: @font_size_extra_small;
+      font-style: italic;
+      text-align: center;
     }
   }
 
-  &_list {
-    &_full {
-      padding: @general_padding;
-      cursor: pointer;
-      position: relative;
+  &_add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: 350px;
+    margin: @general_margin;
+    background: @color_shadow;
+    color: @main_color_opposite;
+    font-size: 80px;
+    cursor: pointer;
 
-      &:hover{
-        background: @color_shadow;
-      }
-
-      &-selected {
-        background: @color_shadow;
-      }
+    &:hover {
+      box-shadow: 10px 10px 50px rgba(0,0,0,0.5);
     }
-  }
-
-
-  &_delete {
-    font-size: 16px;
-    vertical-align: center;
-    position: absolute;
-    right: 0;
   }
 }

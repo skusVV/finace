@@ -1,4 +1,4 @@
-import {Component, Inject, AfterViewInit, ViewChild, ElementRef} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {IPayment} from '../../store/reducers/data.reducer';
 import {CurrencyService} from '../../services/currency.service';
@@ -10,6 +10,12 @@ interface ICategoryVisualize {
   title: string;
   payments: IPayment[];
 }
+
+const initialCurrencies = {
+  USD: 0,
+  EUR: 0,
+  UAH: 0,
+};
 
 type IActiveTab = 'byDate' | 'byCurrency';
 
@@ -53,31 +59,24 @@ export class CategoryVisualizeComponent {
       }
     });
 
-    const chartDataEquialentUah = payments.reduce((acc, value) => {
+    const chartDataEquivalentUah = payments.reduce((acc, value) => {
       acc[value.currency] += Number(Number(value.amount).toFixed(2));
       return acc
-    }, {
-      USD: 0,
-      EUR: 0,
-      UAH: 0,
-    });
+    }, {...initialCurrencies});
+
     const chartDataReal = this.data.payments.reduce((acc, value) => {
       acc[value.currency] += Number(value.amount);
       return acc
-    }, {
-      USD: 0,
-      EUR: 0,
-      UAH: 0,
-    });
+    }, {...initialCurrencies});
 
     this.pieData = {
       data: {
         datasets: [{
-          data: Object.values(chartDataEquialentUah),
+          data: Object.values(chartDataEquivalentUah),
           backgroundColor: ['blue', 'green', 'red']
         }],
         labels: [
-          ...Object.keys(chartDataEquialentUah).map((label) => label !== 'UAH' ? `${label} is ${chartDataReal[label]}, ${label}  equivalent uah` : label),
+          ...Object.keys(chartDataEquivalentUah).map(label => label !== 'UAH' ? `${label} is ${chartDataReal[label]}, ${label}  equivalent uah` : label),
         ]
       },
       options: {

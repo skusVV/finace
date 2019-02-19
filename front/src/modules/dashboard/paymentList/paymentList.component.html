@@ -1,4 +1,7 @@
 <div class="payments">
+  <div class="payments_add">
+    <button mat-raised-button color="primary" >Add Payment</button>
+  </div>
   <table mat-table [dataSource]="payments" class="payments_table">
     <ng-container matColumnDef="created_date">
       <th mat-header-cell *matHeaderCellDef

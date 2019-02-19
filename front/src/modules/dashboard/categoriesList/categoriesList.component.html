@@ -1,21 +1,14 @@
 <div class="categories">
-  <div class="categories_add">
-    <mat-icon class="categories_add_icon"
-              matTooltip="Click, to add new category"
-              (click)="addCategory()">add</mat-icon>
-  </div>
-  <div class="categories_list">
-    <div class="categories_list_empty"
-         *ngIf="!categories.length"
-         matTooltip="Please, add some categories">There no any categories</div>
-    <div class="categories_list_full"
-         [class.categories_list_full-selected]="selectedCategory ? category._id === selectedCategory._id : false"
-         (click)="setCategory(category._id)"
-         *ngFor="let category of categories">
-        {{category.name}}
-      <mat-icon class="categories_delete"
-                (click)="deletePayment($event, category._id)"
+  <div class="preview"
+       *ngFor="let category of (categories | async)"
+       (click)="selectCategory(category._id)">
+    <div class="preview_header">
+      <div>{{category.percent}} %</div>
+      <mat-icon (click)="deletePayment(category._id)"
                 matTooltip="Delete category">delete</mat-icon>
     </div>
+    <div class="preview_name">{{category.name}}</div>
+    <div class="preview_description">{{category.description}}</div>
   </div>
+  <div class="categories_add" (click)="addCategory()">+</div>
 </div>

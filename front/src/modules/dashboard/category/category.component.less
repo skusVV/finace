@@ -1,0 +1,26 @@
+@import '../../../styles/constants';
+
+.category{
+
+  &_header {
+    height: @main_row_height;
+    background: @color_shadow;
+    padding: @general_padding;
+
+    &_add {
+      cursor: pointer;
+    }
+  }
+
+  &_body{
+    display: flex;
+    justify-content: flex-end;
+
+    .payment_list {
+      display: block;
+      width: 25%;
+      border: 1px solid @color_shadow;
+    }
+  }
+}
+

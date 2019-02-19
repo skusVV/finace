@@ -5,18 +5,16 @@ import {SharedModule} from '../shared.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {HeaderComponent} from './header/header.component';
 import {CategoriesListComponent} from './categoriesList/categoriesList.component';
+import {CategoryComponent} from './category/category.component';
 import {PaymentListComponent} from './paymentList/paymentList.component';
-import {PaymentComponent} from './payment/payment.component';
-import {ToggleFieldComponent} from '../../components/toggleField/toggleField.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     HeaderComponent,
     CategoriesListComponent,
-    PaymentListComponent,
-    PaymentComponent,
-    ToggleFieldComponent,
+    CategoryComponent,
+    PaymentListComponent
   ],
   imports: [
     SharedModule,

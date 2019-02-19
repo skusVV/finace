@@ -9,7 +9,7 @@ import {
   DeleteCategorySuccess,
   DELETE_CATEGORY,
   DeleteCategory,
-  DeleteCategoryCancel, OPEN_VISUALIZE_CATEGORY, OpenVisualizeCategory,
+  DeleteCategoryCancel, OPEN_VISUALIZE_CATEGORY, OpenVisualizeCategory, SelectCategory, SELECT_CATEGORY,
 } from '../../actions/category.actions';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
@@ -18,10 +18,12 @@ import {ConfirmComponent} from '../../../components/confirm/confirm.component';
 import {select, Store} from '@ngrx/store';
 import {dataStateSelector, IState} from '../../reducers';
 import {CategoryVisualizeComponent} from '../../../components/categoryVisualize/categoryVisualize.component';
+import {RedirectTo} from '../../actions/router.actions';
 
 @Injectable()
 export class CategoriesEffects {
   @Effect() addCategoryStream: Observable<AddCategorySuccess>;
+  @Effect() selectCategoryStream: Observable<RedirectTo>;
   @Effect() deleteCategoryStream: Observable<DeleteCategorySuccess | DeleteCategoryCancel>;
   @Effect({dispatch: false}) openVisualizeCategoryStream: Observable<any>;
 
@@ -88,6 +90,13 @@ export class CategoriesEffects {
         });
 
         return dialogRef.afterClosed();
+      })
+    );
+
+    this.selectCategoryStream = actionsStream.pipe(
+      ofType<SelectCategory>(SELECT_CATEGORY),
+      switchMap(({payload: {categoryId}}) => {
+        return of(new RedirectTo([`category/${categoryId}`]))
       })
     );
   }

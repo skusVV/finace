@@ -16,11 +16,11 @@ export class PaymentComponent {
   }
 
   onDescriptionChange(description: string){
-    if (description !== this.payment.description) {
-      this.updatePayment.emit({
-        ...this.payment,
-        description
-      })
-    }
+    // if (description !== this.payment.description) {
+    //   this.updatePayment.emit({
+    //     ...this.payment,
+    //     description
+    //   })
+    // }
   }
 }
