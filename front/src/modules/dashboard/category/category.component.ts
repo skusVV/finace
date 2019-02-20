@@ -9,7 +9,7 @@ import {RedirectTo} from '../../../store/actions/router.actions';
 import {OpenVisualizeCategory} from '../../../store/actions/category.actions';
 import {DialogAddNewPayment} from '../../../store/actions/dialog.actions';
 
-const CATEGORY_ID_PARAM = 'id';
+export const CATEGORY_ID_PARAM = 'id';
 
 @Component({
   selector: 'app-category',

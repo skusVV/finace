@@ -18,10 +18,12 @@ export class PieChartComponent implements AfterViewInit {
   }
 
   get width(): number {
+    // TODO remove magic numbers
     return isMobile() ? 2000 : 0;
   }
 
   get height(): number {
+    // TODO remove magic numbers
     return isMobile() ? 2000 : 0;
   }
 
