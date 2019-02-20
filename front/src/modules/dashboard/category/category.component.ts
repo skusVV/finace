@@ -8,6 +8,7 @@ import {Observable} from 'rxjs';
 import {RedirectTo} from '../../../store/actions/router.actions';
 import {OpenVisualizeCategory, SelectCategory} from '../../../store/actions/category.actions';
 import {DialogAddNewPayment} from '../../../store/actions/dialog.actions';
+import {SelectPayment} from '../../../store/actions/payment.actions';
 
 export const CATEGORY_ID_PARAM = 'id';
 
@@ -43,8 +44,8 @@ export class CategoryComponent implements OnInit {
     );
   }
 
-  selectPayment(e: Event) {
-    console.log('selectPayment');
+  selectPayment(category: ICategory) {
+    this.store.dispatch(new SelectPayment(category))
   }
 
   back() {
