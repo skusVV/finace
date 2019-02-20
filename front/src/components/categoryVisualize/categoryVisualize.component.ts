@@ -81,7 +81,11 @@ export class CategoryVisualizeComponent {
       },
       options: {
         legend: {
-          display: true
+          display: true,
+        },
+        cutoutPercentage: 50,
+        layout: {
+          padding: 0
         },
       }
     };

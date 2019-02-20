@@ -1,5 +1,6 @@
 import {Component, Input, AfterViewInit, ViewChild, ElementRef} from '@angular/core';
 import { Chart } from 'chart.js';
+import {isMobile} from 'is-mobile';
 
 const CHART_TYPE = 'pie';
 
@@ -14,6 +15,14 @@ export class PieChartComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.addPieChart();
+  }
+
+  get width(): number {
+    return isMobile() ? 2000 : 0;
+  }
+
+  get height(): number {
+    return isMobile() ? 2000 : 0;
   }
 
   private addPieChart() {
