@@ -2,9 +2,6 @@
   <div class="category_header">
     <i class="material-icons category_header_add" (click)="back()">chevron_left</i>
     {{(category | async).name}}
-    <button mat-flat-button
-            color="primary"
-            (click)="visualizeCategory()">Visualize category</button>
   </div>
   <div class="category_body">
     <app-payment-list class="payment_list"
@@ -12,6 +9,14 @@
                       [payments]="payments | async"
                       (selectPayment)="selectPayment($event)">
     </app-payment-list>
+    <div class="category_body_controls">
+      <button mat-flat-button
+              color="primary"
+              (click)="visualizeCategory()">Visualize category</button>
+      <button mat-flat-button
+              color="primary"
+              (click)="addPayment()">Add Payment</button>
+    </div>
   </div>
 </section>
 

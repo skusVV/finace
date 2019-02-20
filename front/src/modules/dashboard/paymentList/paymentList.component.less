@@ -3,7 +3,6 @@
 .payments {
   display: inline-block;
   background: #fff;
-  height: calc(100vh - (@main_row_height * 2));
   overflow-y: scroll;
   width: 100%;
 
@@ -20,9 +19,15 @@
     }
   }
 
-  &_add {
-    button {
-      width: 100%;
+  .description_row {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .payments {
+    .description_row{
+      display: none;
     }
   }
 }

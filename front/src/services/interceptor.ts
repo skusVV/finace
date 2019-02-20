@@ -11,7 +11,9 @@ import {IState, userStateSelector} from '../store/reducers';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(private store: Store<IState>) {}
+  constructor(private store: Store<IState>) {
+
+  }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (request.url.indexOf('https') === -1) {

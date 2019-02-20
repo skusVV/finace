@@ -14,7 +14,7 @@ import {PaymentListComponent} from './paymentList/paymentList.component';
     HeaderComponent,
     CategoriesListComponent,
     CategoryComponent,
-    PaymentListComponent
+    PaymentListComponent,
   ],
   imports: [
     SharedModule,

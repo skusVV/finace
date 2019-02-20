@@ -8,7 +8,7 @@
     <span (click)="setActiveTab('byCurrency')">By Currency</span>
     <span (click)="setActiveTab('byDate')">By Date</span>
   </nav>
-  <div  *ngIf="isByCurrencyActive" >
+  <div  *ngIf="isByCurrencyActive" class="visualize_currency">
     das
     <app-pie-chart class="visualize_currency-pie" [data]="pieData"></app-pie-chart>
   </div>

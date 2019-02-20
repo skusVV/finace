@@ -19,6 +19,7 @@ import {select, Store} from '@ngrx/store';
 import {dataStateSelector, IState} from '../../reducers';
 import {CategoryVisualizeComponent} from '../../../components/categoryVisualize/categoryVisualize.component';
 import {RedirectTo} from '../../actions/router.actions';
+import {isMobile} from 'is-mobile';
 
 @Injectable()
 export class CategoriesEffects {
@@ -81,8 +82,9 @@ export class CategoriesEffects {
       )),
       switchMap(({title, payments}) => {
         const dialogRef = this.dialog.open(CategoryVisualizeComponent, {
-          width: '100vw',
-          height: '95vh',
+          width: isMobile() ? '100vw' : '80vw',
+          maxWidth: '100vw',
+          height: isMobile() ? '100vh' :'95vh',
           data: {
             title,
             payments,

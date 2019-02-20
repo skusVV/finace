@@ -13,7 +13,7 @@ export class PaymentListComponent {
   @Input() payments: IPayment[];
   @Output() selectPayment = new EventEmitter<IPayment>();
 
-  displayedColumns: string[] = ['created_date', 'amount'];
+  displayedColumns: string[] = ['created_date', 'amount', 'description'];
 
   constructor(private currencyService: CurrencyService){}
 

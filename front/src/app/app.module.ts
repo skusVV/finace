@@ -35,7 +35,7 @@ import {PieChartComponent} from '../components/pieChart/pieChart.component';
     AddPaymentComponent,
     ConfirmComponent,
     CategoryVisualizeComponent,
-    PieChartComponent
+    PieChartComponent,
   ],
   imports: [
     BrowserAnimationsModule,

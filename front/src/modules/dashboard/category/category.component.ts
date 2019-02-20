@@ -7,6 +7,7 @@ import {Store, select} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {RedirectTo} from '../../../store/actions/router.actions';
 import {OpenVisualizeCategory} from '../../../store/actions/category.actions';
+import {DialogAddNewPayment} from '../../../store/actions/dialog.actions';
 
 const CATEGORY_ID_PARAM = 'id';
 
@@ -16,8 +17,8 @@ const CATEGORY_ID_PARAM = 'id';
   styleUrls: ['./category.component.less'],
 })
 export class CategoryComponent implements OnInit {
-  private payments: Observable<IPayment[]>;
-  private category: Observable<ICategory>;
+  payments: Observable<IPayment[]>;
+  category: Observable<ICategory>;
 
   constructor(private route: ActivatedRoute, private store: Store<IState>) {}
 
@@ -46,6 +47,10 @@ export class CategoryComponent implements OnInit {
 
   visualizeCategory() {
     this.store.dispatch(new OpenVisualizeCategory());
+  }
+
+  addPayment() {
+    this.store.dispatch(new DialogAddNewPayment());
   }
 
   private get routerParamId(): string {

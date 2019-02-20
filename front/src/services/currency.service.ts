@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {ICurrencyExchange} from '../store/reducers/data.reducer';
 import {select, Store} from '@ngrx/store';
 import {dataStateSelector, IState} from '../store/reducers';
-import {distinctUntilChanged, map} from 'rxjs/operators';
+import {distinctUntilChanged, map, tap} from 'rxjs/operators';
 
 
 @Injectable()
@@ -16,11 +16,13 @@ export class CurrencyService {
     );
 
     dataStateStream.pipe(
-      map(({currencyExchange}) => currencyExchange)
-    ).subscribe(data => {
-      this.currencyExchange = data;
-    })
+      map(({currencyExchange}) => currencyExchange),
+      tap(currencyExchange => {
+        this.currencyExchange = currencyExchange;
+      })
+    ).subscribe();
   }
+
   exchangeCurrency(amount: number, type: string): number {
     return this.currencyExchange && type !== 'USD' && type !== 'EUR'
       ? amount
