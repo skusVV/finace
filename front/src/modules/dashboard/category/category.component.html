@@ -1,7 +1,7 @@
 <section class="category">
   <div class="category_header">
     <i class="material-icons category_header_add" (click)="back()">chevron_left</i>
-    {{(category | async).name}}
+    <span *ngIf="!!(category | async)">{{(category | async).name}}</span>
   </div>
   <div class="category_body">
     <app-payment-list class="payment_list"

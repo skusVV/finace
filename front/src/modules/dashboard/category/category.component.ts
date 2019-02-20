@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {distinctUntilChanged, map} from 'rxjs/operators';
+import {distinctUntilChanged, map, take, filter, tap} from 'rxjs/operators';
 import {IState, dataStateSelector} from '../../../store/reducers';
 import {IPayment, ICategory} from '../../../store/reducers/data.reducer';
 import {Store, select} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {RedirectTo} from '../../../store/actions/router.actions';
-import {OpenVisualizeCategory} from '../../../store/actions/category.actions';
+import {OpenVisualizeCategory, SelectCategory} from '../../../store/actions/category.actions';
 import {DialogAddNewPayment} from '../../../store/actions/dialog.actions';
 
 export const CATEGORY_ID_PARAM = 'id';
@@ -28,12 +28,18 @@ export class CategoryComponent implements OnInit {
       select(dataStateSelector),
     );
 
+    // TODO get rid of subscribe better user routing from @ngrx/
+    dataStateStream.pipe(
+      filter(({selectedCategory, categories}) => !selectedCategory && !!categories.length),
+      tap(() => this.store.dispatch(new SelectCategory(this.routerParamId)))
+    ).subscribe();
+
     this.payments = dataStateStream.pipe(
         map(({payments}) => payments.filter(payment => payment.categoryId === this.routerParamId)),
     );
 
     this.category = dataStateStream.pipe(
-      map(({categories}) => categories.filter(category => category._id === this.routerParamId)[0]),
+      map(({selectedCategory}) => selectedCategory),
     );
   }
 
