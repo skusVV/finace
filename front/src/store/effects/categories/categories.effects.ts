@@ -98,7 +98,7 @@ export class CategoriesEffects {
     this.selectCategoryStream = actionsStream.pipe(
       ofType<SelectCategory>(SELECT_CATEGORY),
       switchMap(({payload: {categoryId}}) => {
-        return of(new RedirectTo([`category/${categoryId}`]))
+        return of(new RedirectTo([`dashboard/category/${categoryId}`]))
       })
     );
   }

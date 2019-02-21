@@ -1,0 +1,45 @@
+@import '../../../../styles/constants';
+
+:host {
+  display: block;
+  margin: @general_margin-medium 0;
+}
+
+.blog {
+  .header {
+    background: @general_neutral_color;
+    padding: @general_padding_small;
+
+    &_title {
+      font-size: @font_size_extra_large;
+    }
+
+    &_additional {
+      display: flex;
+      justify-content: space-between;
+
+      &_description {
+        font-size: @font_size_extra_small;
+        font-weight: @text_normal;
+      }
+
+      &_date {
+        font-size: @font_size_extra_small;
+      }
+    }
+  }
+
+  &_data {
+    padding: @general_padding_small;
+    border: 1px solid @general_neutral_color;
+
+    &_more {
+      display: flex;
+      justify-content: flex-end;
+
+      div {
+        .clickable_link;
+      }
+    }
+  }
+}

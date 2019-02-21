@@ -6,6 +6,10 @@ import {DashboardResolver} from '../services/dashboard.resolver';
 const routes: Routes = [
   {
     path: '',
+    loadChildren: '../modules/landing/landing.module#LandingModule',
+  },
+  {
+    path: 'dashboard',
     loadChildren: '../modules/dashboard/dashboard.module#DashboardModule',
     canActivate: [AuthGuard],
     resolve: { data: DashboardResolver }

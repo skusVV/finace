@@ -1,28 +1,25 @@
+@import './color.constants.less';
+@import './media.constants.less';
+@import './font.constants.less';
+@import './size.constants.less';
 
-// COLORS
-@main_color: #4250AF;
-@main_color_opposite: #fff;
-@color_shadow: #F2F1F2;
-@color_shadow_opposite: #FFFFFF;
+@fast_transform: 0.1s ease-in;
 
-// FONT SIZES
+.centering {
+  width: 80%;
+  margin: 0 auto;
 
-@font_size_extra_small: 12x;
-@font_size_small: 14x;
-@font_size_normal: 16px;
-@font_size_large: 18px;
+  @media screen and (max-width: @media_tablet) {
+    width: 100%;
+  }
+}
 
-@font_size_extra_large: 20px;
-@main_title: @font_size_large;
-@sub_title: @font_size_normal;
-@description_title: @font_size_extra_small;
+.clickable_link {
+  cursor: pointer;
+  color: @text_neutral_color;
+  transition: color @fast_transform;
 
-// MARGINS and PADDINGS
-@general_margin: 10px;
-@general_padding: 10px;
-
-
-// COMPONENTS
-@main_row_height: 50px;
-
-@text_bold: 600;
+  &:hover {
+    color: @text_neutral_color_hover;
+  }
+}

@@ -1,0 +1,60 @@
+@import '../../styles/constants';
+
+.landing {
+
+  .header {
+    display: flex;
+    align-items: center;
+    height: @main_row_height;
+    background: @general_neutral_color;
+    padding: @general_padding_small;
+
+    .centering {
+      display: flex;
+      .centering;
+    }
+
+    &_logo {
+      margin-right: @general_margin-large;
+      cursor: pointer;
+    }
+
+    &_nav {
+      display: flex;
+
+      &_item {
+        display: flex;
+        padding: 0 @general_padding_small;
+        .clickable_link;
+      }
+    }
+
+    &_login {
+      margin-left: auto;
+
+      &_button {
+        height: 30px;
+        width: 70px;
+        border: none;
+        outline: none;
+        border-radius: 10%;
+        cursor: pointer;
+
+        &:hover {
+          background: @text_neutral_color;
+          color: @main_color_opposite;
+        }
+      }
+    }
+  }
+
+  .main {
+    min-height: calc(100vh - @main_row_height - @footer_height);
+  }
+
+  .footer {
+    height: @footer_height;
+    background: @general_neutral_color;
+  }
+
+}

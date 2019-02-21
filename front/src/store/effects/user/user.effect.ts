@@ -61,7 +61,7 @@ export class UserEffect {
       ofType<LogoutUser>(USER_LOGOUT),
       switchMap(() => {
           sessionStorage.setItem(USER_TOKEN, '');
-          this.store.dispatch(new RedirectTo(['/login']));
+          this.store.dispatch(new RedirectTo(['']));
 
           return of(new LogoutUserSucess());
       })

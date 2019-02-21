@@ -1,0 +1,29 @@
+<section class="landing">
+  <header class="header">
+    <section class="centering">
+      <div class="header_logo" (click)="goTo('')">
+        Logo text
+      </div>
+      <nav class="header_nav">
+        <span class="header_nav_item" (click)="goTo('dashboard')">Dashboard</span>
+        <span class="header_nav_item" (click)="goTo('blog')">Blog</span>
+      </nav>
+      <div class="header_login">
+        <button class="header_login_button" (click)="goTo('login')">Login</button>
+      </div>
+    </section>
+  </header>
+
+  <section class="main">
+    <section class="centering">
+      <router-outlet></router-outlet>
+    </section>
+  </section>
+
+  <footer class="footer">
+    <section class="centering">
+      dasdas
+    </section>
+  </footer>
+</section>
+

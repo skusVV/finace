@@ -77,7 +77,7 @@ export class PaymentsEffects {
       ofType<SelectPayment>(SELECT_PAYMENT),
       switchMap(({payload: {selectedPayment}}) => {
 
-        return of(new RedirectTo([`payment/${selectedPayment._id}`]))
+        return of(new RedirectTo([`dashboard/payment/${selectedPayment._id}`]))
       })
     );
   }
